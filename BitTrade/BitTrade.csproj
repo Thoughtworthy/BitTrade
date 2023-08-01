@@ -16,7 +16,7 @@
     <AssemblyName>BitTrade</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -134,6 +134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -157,6 +158,7 @@
     <Content Include="Content\bootsrtrap\bootstrap.rtl.css" />
     <Content Include="Content\bootsrtrap\bootstrap.rtl.min.css" />
     <Content Include="Content\Pics\about2.png" />
+    <Content Include="favicon.ico" />
     <Content Include="Content\Pics\body_bg.jpg" />
     <Content Include="Content\Pics\clint.jpg" />
     <Content Include="Content\Pics\graf1.jpg" />
@@ -188,7 +190,6 @@
     <Content Include="Content\Styles\owl.theme.green.min.css" />
     <Content Include="Content\Styles\responsive.css" />
     <Content Include="Content\Styles\style.css" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\bootsrtrap\Site.css" />
     <Content Include="Scripts\bootstrap\bootstrap.bundle.js" />
@@ -227,6 +228,7 @@
     <Content Include="Scripts\Js\owl.carousel.js" />
     <Content Include="Scripts\Js\owl.carousel.min.js" />
     <Content Include="Scripts\Js\popper.min.js" />
+    <Content Include="Scripts\my-js\AsyncronTest.js" />
     <Content Include="Scripts\my-js\my-js.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -249,6 +251,8 @@
     <Content Include="Scripts\Js\bootstrap.min.js.map" />
     <Content Include="Views\Home\UserProfile.cshtml" />
     <Content Include="Views\Home\Exchange.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Shared\PartalView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -299,7 +303,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49239</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49239/</IISUrl>
+          <IISUrl>http://bitcypo.com</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
