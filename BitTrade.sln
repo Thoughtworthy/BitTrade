@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitTrade", "BitTrade\BitTrade.csproj", "{2ECA5169-9B37-4D84-87E1-21FA91A508AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2ECA5169-9B37-4D84-87E1-21FA91A508AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ECA5169-9B37-4D84-87E1-21FA91A508AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ECA5169-9B37-4D84-87E1-21FA91A508AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ECA5169-9B37-4D84-87E1-21FA91A508AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {909AF508-C777-49E2-A0A2-26D06B22D679}
+	EndGlobalSection
+EndGlobal
