@@ -22,10 +22,19 @@ namespace BitTrade.Controllers
 
         // Like API
 
-        public JsonResult JsonFoo()
+        public JsonResult JsonFoo(string flag)
         {
-
-            return Json(new { Name = "Ararat", Age = 12 },JsonRequestBehavior.AllowGet);
+            string[] data;
+            switch (flag)
+            {
+                case "Armenian":
+                    data = new []{ "red", "blue", "orange" };
+                    break;
+                default:
+                    data = new[] { "green", "white", "red" };
+                    break;
+            }
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         public PartialViewResult MyPartal()
