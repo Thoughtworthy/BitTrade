@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -135,9 +143,35 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="DAL\Coin.cs">
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Favourite.cs">
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\TradeModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TradeModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\TradeModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\TradeModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TradeModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\User.cs">
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\Class1.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MyUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +192,16 @@
     <Content Include="Content\bootsrtrap\bootstrap.rtl.css" />
     <Content Include="Content\bootsrtrap\bootstrap.rtl.min.css" />
     <Content Include="Content\Pics\about2.png" />
+    <Content Include="DAL\TradeModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TradeModel.Context.cs</LastGenOutput>
+      <DependentUpon>TradeModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="DAL\TradeModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TradeModel.edmx</DependentUpon>
+      <LastGenOutput>TradeModel.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Content\Pics\body_bg.jpg" />
     <Content Include="Content\Pics\clint.jpg" />
@@ -206,6 +250,13 @@
     <Content Include="Content\Styles\bootstrap.css.map" />
     <Content Include="Content\Styles\bootstrap.min.css.map" />
     <Content Include="Content\Pics\.DS_Store" />
+    <EntityDeploy Include="DAL\TradeModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TradeModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DAL\TradeModel.edmx.diagram">
+      <DependentUpon>TradeModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jQuery\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jQuery\jquery-3.4.1.js" />
     <Content Include="Scripts\jQuery\jquery-3.4.1.min.js" />
@@ -253,10 +304,10 @@
     <Content Include="Views\Home\Exchange.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Shared\PartalView.cshtml" />
+    <Content Include="Views\Test\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootsrtrap\bootstrap.rtl.min.css.map" />
@@ -284,6 +335,9 @@
     <Content Include="Scripts\bootstrap\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jQuery\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jQuery\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

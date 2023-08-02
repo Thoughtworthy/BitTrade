@@ -1,0 +1,52 @@
+﻿@using TradePlatform.Models
+
+@model MyUser
+
+@{
+    ViewBag.Title = "Test";
+}
+
+@Html.ValidationSummary()
+
+<div>
+    <button id="my-btn" class="btn btn-primary">Click On Me</button>
+</div>
+
+@using (Html.BeginForm("Test", "Test", FormMethod.Post, new { id = "my-form-id" }))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">@Html.LabelFor(m => m.ID)</div>
+            <div class="col-md-3">@Html.EditorFor(m => m.ID)</div>
+            @Html.ValidationMessageFor(m => m.ID)
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">@Html.LabelFor(m => m.FirstName)</div>
+            <div class="col-md-3">@Html.EditorFor(m => m.FirstName)</div>
+            <div class="text-danger"> @Html.ValidationMessageFor(m => m.FirstName)</div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">@Html.LabelFor(m => m.IsActive)</div>
+            <div class="col-md-3">@Html.EditorFor(m => m.IsActive)</div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">@Html.LabelFor(m => m.DayType)</div>
+            <div class="col-md-3">@Html.EditorFor(m => m.DayType)</div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">@Html.LabelFor(m => m.Names)</div>
+            <div class="col-md-3">@Html.EditorFor(m => m.Names)</div>
+        </div>
+        <br />
+
+        <div>
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/my-js/AsyncronTest.js"></script>
