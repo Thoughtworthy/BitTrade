@@ -19,6 +19,7 @@ namespace BitTrade.BLL
                 ID = p.ID,
                 FirstName = p.FirstName,
                 Email = p.Email,
+                DateOfBirth = p.DateOfBirth,
             }).ToList();
             return result;
         }

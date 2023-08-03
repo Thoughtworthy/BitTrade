@@ -12,5 +12,6 @@ namespace BitTrade.Common.Models
         public string FirstName { get; set; }
         public string Email { get; set; }
 
+        public DateTime DateOfBirth { get; set; }
     }
 }
