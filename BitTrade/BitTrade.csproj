@@ -142,32 +142,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="DAL\Coin.cs">
-      <DependentUpon>TradeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Favourite.cs">
-      <DependentUpon>TradeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\TradeModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TradeModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\TradeModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TradeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\TradeModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TradeModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\User.cs">
-      <DependentUpon>TradeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Enums\Class1.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -175,112 +149,26 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootsrtrap\bootstrap-grid.css" />
-    <Content Include="Content\bootsrtrap\bootstrap-grid.min.css" />
-    <Content Include="Content\bootsrtrap\bootstrap-grid.rtl.css" />
-    <Content Include="Content\bootsrtrap\bootstrap-grid.rtl.min.css" />
-    <Content Include="Content\bootsrtrap\bootstrap-reboot.css" />
-    <Content Include="Content\bootsrtrap\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootsrtrap\bootstrap-reboot.rtl.css" />
-    <Content Include="Content\bootsrtrap\bootstrap-reboot.rtl.min.css" />
-    <Content Include="Content\bootsrtrap\bootstrap-utilities.css" />
-    <Content Include="Content\bootsrtrap\bootstrap-utilities.min.css" />
-    <Content Include="Content\bootsrtrap\bootstrap-utilities.rtl.css" />
-    <Content Include="Content\bootsrtrap\bootstrap-utilities.rtl.min.css" />
-    <Content Include="Content\bootsrtrap\bootstrap.css" />
-    <Content Include="Content\bootsrtrap\bootstrap.min.css" />
-    <Content Include="Content\bootsrtrap\bootstrap.rtl.css" />
-    <Content Include="Content\bootsrtrap\bootstrap.rtl.min.css" />
     <Content Include="Content\Pics\about2.png" />
-    <Content Include="DAL\TradeModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TradeModel.Context.cs</LastGenOutput>
-      <DependentUpon>TradeModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="DAL\TradeModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TradeModel.edmx</DependentUpon>
-      <LastGenOutput>TradeModel.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Content\Pics\body_bg.jpg" />
-    <Content Include="Content\Pics\clint.jpg" />
-    <Content Include="Content\Pics\graf1.jpg" />
-    <Content Include="Content\Pics\graf2.jpg" />
     <Content Include="Content\Pics\icon.png" />
     <Content Include="Content\Pics\loading.gif" />
-    <Content Include="Content\Pics\logo.png" />
     <Content Include="Content\Pics\menu_btn.png" />
     <Content Include="Content\Pics\top_img.png" />
     <Content Include="Content\Pics\wa1.svg" />
     <Content Include="Content\Pics\wa2.svg" />
     <Content Include="Content\Pics\wa3.svg" />
     <Content Include="Content\Pics\wa4.svg" />
-    <Content Include="Content\Pics\work.png" />
-    <Content Include="Content\Styles\bootstrap-grid.css" />
-    <Content Include="Content\Styles\bootstrap-grid.min.css" />
-    <Content Include="Content\Styles\bootstrap-reboot.css" />
-    <Content Include="Content\Styles\bootstrap-reboot.min.css" />
-    <Content Include="Content\Styles\bootstrap.css" />
-    <Content Include="Content\Styles\bootstrap.min.css" />
-    <Content Include="Content\Styles\font-awesome.min.css" />
-    <Content Include="Content\Styles\jquery.mCustomScrollbar.min.css" />
-    <Content Include="Content\Styles\meanmenu.css" />
-    <Content Include="Content\Styles\owl.carousel.css" />
-    <Content Include="Content\Styles\owl.carousel.min.css" />
-    <Content Include="Content\Styles\owl.theme.default.css" />
-    <Content Include="Content\Styles\owl.theme.default.min.css" />
-    <Content Include="Content\Styles\owl.theme.green.css" />
-    <Content Include="Content\Styles\owl.theme.green.min.css" />
-    <Content Include="Content\Styles\responsive.css" />
     <Content Include="Content\Styles\style.css" />
     <Content Include="Global.asax" />
-    <Content Include="Content\bootsrtrap\Site.css" />
-    <Content Include="Scripts\bootstrap\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\bootstrap\bootstrap.esm.js" />
-    <Content Include="Scripts\bootstrap\bootstrap.esm.min.js" />
-    <Content Include="Scripts\bootstrap\bootstrap.js" />
-    <Content Include="Scripts\bootstrap\bootstrap.min.js" />
-    <Content Include="Content\Styles\.DS_Store" />
-    <Content Include="Content\Styles\bootstrap-grid.css.map" />
-    <Content Include="Content\Styles\bootstrap-grid.min.css.map" />
-    <Content Include="Content\Styles\bootstrap-reboot.css.map" />
-    <Content Include="Content\Styles\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\Styles\bootstrap.css.map" />
-    <Content Include="Content\Styles\bootstrap.min.css.map" />
     <Content Include="Content\Pics\.DS_Store" />
-    <EntityDeploy Include="DAL\TradeModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TradeModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DAL\TradeModel.edmx.diagram">
-      <DependentUpon>TradeModel.edmx</DependentUpon>
-    </Content>
-    <None Include="Scripts\jQuery\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jQuery\jquery-3.4.1.js" />
-    <Content Include="Scripts\jQuery\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jQuery\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jQuery\jquery-3.4.1.slim.min.js" />
-    <None Include="Scripts\jQuery\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jQuery\jquery.validate.js" />
-    <Content Include="Scripts\jQuery\jquery.validate.min.js" />
-    <Content Include="Scripts\jQuery\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jQuery\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\jQuery\modernizr-2.8.3.js" />
-    <Content Include="Scripts\Js\bootstrap.bundle.js" />
-    <Content Include="Scripts\Js\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\Js\bootstrap.js" />
-    <Content Include="Scripts\Js\bootstrap.min.js" />
-    <Content Include="Scripts\Js\custom.js" />
-    <Content Include="Scripts\Js\jquery-3.0.0.min.js" />
-    <Content Include="Scripts\Js\jquery.mCustomScrollbar.concat.min.js" />
-    <Content Include="Scripts\Js\jquery.min.js" />
-    <Content Include="Scripts\Js\owl.carousel.js" />
-    <Content Include="Scripts\Js\owl.carousel.min.js" />
-    <Content Include="Scripts\Js\popper.min.js" />
-    <Content Include="Scripts\my-js\AsyncronTest.js" />
-    <Content Include="Scripts\my-js\my-js.js" />
+    <Content Include="Scripts\Common.js" />
+    <Content Include="Scripts\About.js" />
+    <Content Include="Scripts\Contacr.js" />
+    <Content Include="Scripts\Exchange.js" />
+    <Content Include="Scripts\UserProfile.js" />
+    <Content Include="Scripts\Index.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -295,49 +183,27 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\Js\.DS_Store" />
-    <Content Include="Scripts\Js\bootstrap.bundle.js.map" />
-    <Content Include="Scripts\Js\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\Js\bootstrap.js.map" />
-    <Content Include="Scripts\Js\bootstrap.min.js.map" />
     <Content Include="Views\Home\UserProfile.cshtml" />
     <Content Include="Views\Home\Exchange.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
-    <Content Include="Views\Shared\PartalView.cshtml" />
-    <Content Include="Views\Test\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootsrtrap\bootstrap.rtl.min.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap.rtl.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap.min.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap-utilities.rtl.min.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap-utilities.rtl.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap-utilities.min.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap-utilities.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap-reboot.rtl.min.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap-reboot.rtl.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap-grid.rtl.min.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap-grid.rtl.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootsrtrap\bootstrap-grid.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\bootstrap\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap\bootstrap.esm.min.js.map" />
-    <Content Include="Scripts\bootstrap\bootstrap.esm.js.map" />
-    <Content Include="Scripts\bootstrap\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap\bootstrap.bundle.js.map" />
-    <Content Include="Scripts\jQuery\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jQuery\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BitTrade.BLL\BitTrade.BLL.csproj">
+      <Project>{92af102d-b85d-481f-9463-f88d710f524e}</Project>
+      <Name>BitTrade.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BitTrade.Common\BitTrade.Common.csproj">
+      <Project>{42e79dbc-e38a-4257-ac24-1d17542de305}</Project>
+      <Name>BitTrade.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

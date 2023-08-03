@@ -12,11 +12,6 @@ import Fonts
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,600i,700,700i,800,800i&display=swap');
 
-/*--------------------------------------------------------------------- import Files ---------------------------------------------------------------------*/
-
-@import url(font-awesome.min.css);
-@import url(owl.carousel.min.css);
-
 /*--------------------------------------------------------------------- 
 basic 
 ---------------------------------------------------------------------*/
@@ -39,7 +34,6 @@ a {
      outline: none !important;
      -webkit-transition: all .3s ease-in-out;
      -moz-transition: all .3s ease-in-out;
-     -ms-transition: all .3s ease-in-out;
      -o-transition: all .3s ease-in-out;
      transition: all .3s ease-in-out;
 }
@@ -139,7 +133,6 @@ a,
      outline: none !important;
      -webkit-transition: all .3s ease-in-out;
      -moz-transition: all .3s ease-in-out;
-     -ms-transition: all .3s ease-in-out;
      -o-transition: all .3s ease-in-out;
      transition: all .3s ease-in-out;
 }
