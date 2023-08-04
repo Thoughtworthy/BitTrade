@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,15 @@ namespace BitTrade.Common.Models
 {
     public class UserModels
     {
+
+        [JsonIgnore]
         public int ID { get; set; }
         public string FirstName { get; set; }
+
+        [JsonProperty("Gmail")]
         public string Email { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime? DateOfBirth { get; set; }
     }
 }

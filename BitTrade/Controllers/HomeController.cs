@@ -11,8 +11,12 @@ namespace BitTrade.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public ActionResult UserProfile()
+        {
+            return View();
+        }
+        public ActionResult UserLogIn()
         {
             return View();
         }
