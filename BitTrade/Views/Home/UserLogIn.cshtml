@@ -12,31 +12,31 @@
                      class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                @using (Html.BeginForm("UserProfile", "Home", FormMethod.Post))
+                @using (Html.BeginForm("LogIn", "Home", FormMethod.Post))
                 {
-                    <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                        <p class="lead fw-normal mb-0 me-3 text-white">Sign in with</p>
-                        <button type="button" class="btn btn-primary btn-floating mx-1">
-                            <i class="fa fa-facebook-official"></i>
-                        </button>
-                    </div>
+                    @*<div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                            <p class="lead fw-normal mb-0 me-3 text-white">Sign in with</p>
+                            <button type="button" class="btn btn-primary btn-floating mx-1">
+                                <i class="fa fa-facebook-official"></i>
+                            </button>
+                        </div>
 
-                    <div class="divider d-flex align-items-center my-4">
-                        <p class="text-center fw-bold mx-3 mb-0">Or</p>
-                    </div>
+                        <div class="divider d-flex align-items-center my-4">
+                            <p class="text-center fw-bold mx-3 mb-0">Or</p>
+                        </div>*@
 
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input type="email" id="form3Example3" class="form-control form-control-lg"
+                        <input type="email" name="email" id="login-email" class="form-control form-control-lg"
                                placeholder="Enter a valid email address" />
-                        <label class="form-label text-white" for="form3Example3">Email address</label>
+                        <label class="form-label text-white" for="login-email">Email address</label>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-3">
-                        <input type="password" id="form3Example4" class="form-control form-control-lg"
+                        <input type="password" name="password" id="login-password" class="form-control form-control-lg"
                                placeholder="Enter password" />
-                        <label class="form-label text-white" for="form3Example4">Password</label>
+                        <label class="form-label text-white" for="login-password">Password</label>
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center">

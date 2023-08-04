@@ -59,12 +59,18 @@
                     </div>
                     <div class="col-sm-4">
                         <ul class="email text_align_right">
-
-                            <li class="d_none"><a href="@userProfileUrl"><i class="fa fa-user" style="color:#f7c137" aria-hidden="true"></i></a></li>
-                            <li class="d_none"> <a href="/"><i class="fa fa-sign-in" style="cursor: pointer; color:grey" aria-hidden="true"></i></a> </li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li class="d_none"><a href="@userProfileUrl"><i class="fa fa-user" style="color:#f7c137" aria-hidden="true"></i></a></li>
+                                <li class="d_none"> <a href="/"><i class="fa fa-sign-in" style="cursor: pointer; color:grey" aria-hidden="true"></i></a> </li>
+                            }
                             <li>
-                                <button class="openbtn" onclick="toggleNav()"><img src="~/Content/Pics/menu_btn.png"></button>
+                                <button class="openbtn" onclick="toggleNav()" type="button">
+                                <img src="~/Content/Pics/menu_btn.png" alt="burger">
+                                </button>
                             </li>
+
+
                         </ul>
                     </div>
                 </div>
