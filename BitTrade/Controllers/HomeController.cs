@@ -1,19 +1,19 @@
 ﻿using BitTrade.BLL;
 using System.Linq;
 using System.Web.Mvc;
-using BitTrade.Controllers;
-using System.Globalization;
-using System.Web.Security;
+using BitTrade.Common.Models;
 
 namespace BitTrade.Controllers
 {
 
-    [Authorize(Users = "David,Poxos")]
+    [Authorize]
     public class HomeController : BaseController
     {
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
+
             return View();
         }
         public ActionResult UserProfile()
@@ -23,28 +23,32 @@ namespace BitTrade.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult LogIn(string email, string password)
+        public ActionResult LogIn(LoginModel model)
         {
-            //TODO: Change arguments 
-            if (email == "davit.torosyan.2014@mai.ru" && password == "test")
+            if (AccountService.LogIn(model))
             {
-                FormsAuthentication.SetAuthCookie("davit.torosyan.2014@mai.ru", true);
-
-                return RedirectToAction("Index");
+                return Redirect($"{Request.Url.Scheme}://{Request.Url.Host}{model.ReturnUrl}");
             }
-            return RedirectToAction("UserLogIn");
+            else
+            {
+                return RedirectToAction("UserLogIn", new { ReturnUrl = model.ReturnUrl });
+            }
+
         }
 
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult UserLogIn()
         {
-            return View();
+            string returnUrl = Request.QueryString["ReturnUrl"];
+            return View(new LoginModel { ReturnUrl = string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl });
+
         }
 
         [HttpPost]
         public ActionResult SignOut()
         {
-            FormsAuthentication.SignOut();
+            AccountService.SignOut();
 
             return RedirectToAction("UserLogIn");
         }

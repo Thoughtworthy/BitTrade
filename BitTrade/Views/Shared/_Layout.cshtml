@@ -29,6 +29,7 @@
     @{
         string userProfileUrl = Url.Action("UserProfile", "Home");
         string exchangeUrl = Url.Action("Exchange", "Home");
+        string userLogInUrl = Url.Action("UserLogIn", "Home");
     }
     <div id="mySidepanel" class="sidepanel">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
@@ -61,16 +62,42 @@
                         <ul class="email text_align_right">
                             @if (Request.IsAuthenticated)
                             {
-                                <li class="d_none"><a href="@userProfileUrl"><i class="fa fa-user" style="color:#f7c137" aria-hidden="true"></i></a></li>
-                                <li class="d_none"> <a href="/"><i class="fa fa-sign-in" style="cursor: pointer; color:grey" aria-hidden="true"></i></a> </li>
+                                using (Html.BeginForm("UserProfile", "Home"))
+                                {
+                                    <li class="d_none">
+                                        <button type="submit" style="border: none; background: none; cursor: pointer; padding:3px">
+                                            <i class="fa fa-user" style="color: #f7c137;" aria-hidden="true"></i>
+                                        </button>
+                                    </li>
+                                }
+
+
+                                using (Html.BeginForm("SignOut", "Home", FormMethod.Post))
+                                {
+                                    <li class="d_none">
+                                        <button type="submit" style="border: none; background: none; cursor: pointer; padding: 3px">
+                                            <i class="fa fa-sign-out" style="color: grey;" aria-hidden="true"></i>
+                                        </button>
+                                    </li>
+                                }
+
+                            }
+                            else
+                            {
+                                using (Html.BeginForm("UserLogIn", "Home", FormMethod.Get))
+                                {
+                                    <li class="d_none">
+                                        <button type="submit" style="border: none; background: none; cursor: pointer; padding: 3px">
+                                            <i class="fa fa-sign-in" style="color: #f7c137;" aria-hidden="true"> Sing In</i>
+                                        </button>
+                                    </li>
+                                }
                             }
                             <li>
                                 <button class="openbtn" onclick="toggleNav()" type="button">
-                                <img src="~/Content/Pics/menu_btn.png" alt="burger">
+                                    <img src="~/Content/Pics/menu_btn.png" alt="burger">
                                 </button>
                             </li>
-
-
                         </ul>
                     </div>
                 </div>
