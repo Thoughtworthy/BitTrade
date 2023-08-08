@@ -1,4 +1,7 @@
+using SimpleInjector.Integration.Web;
+using SimpleInjector;
 using System;
+using System.Reflection;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Http;
@@ -6,6 +9,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
+using BitTrade.BLL;
+using BitTrade.Configuration;
 
 namespace BitTrade
 {
@@ -22,6 +27,9 @@ namespace BitTrade
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //Injection
+            SimpleInjectorConfiguration.Register(GlobalConfiguration.Configuration);
         }
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
@@ -47,13 +55,6 @@ namespace BitTrade
                 Context.User = new GenericPrincipal(Context.User.Identity, roles);
             }
         }
-        //protected void Application_BeginRequest(Object sender, EventArgs e)
-        //{
-        //    if (HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath == "~/")
-        //    {
-        //        HttpContext.Current.RewritePath("~/Home/Index");
-        //    }
-        //}
     }
 
 

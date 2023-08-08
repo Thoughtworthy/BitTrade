@@ -1,4 +1,4 @@
-﻿using BitTrade.BLL;
+﻿using BitTrade.BLL.Services;
 using System.Linq;
 using System.Web.Mvc;
 using BitTrade.Common.Models;
@@ -9,7 +9,15 @@ namespace BitTrade.Controllers
     [Authorize]
     public class HomeController : BaseController
     {
+        readonly IAccountService _accountService;
+        readonly IUserService _userService;
+        public HomeController(IAccountService accountService, IUserService userService)
+        {
+            _accountService = accountService;
+            _userService = userService;
+        }
 
+        #region
         [AllowAnonymous]
         public ActionResult Index()
         {
@@ -25,13 +33,15 @@ namespace BitTrade.Controllers
         [AllowAnonymous]
         public ActionResult LogIn(LoginModel model)
         {
-            if (AccountService.LogIn(model))
+            if (_accountService.LogIn(model))
             {
-                return Redirect($"{Request.Url.Scheme}://{Request.Url.Host}{model.ReturnUrl}");
+
+                //Redirect($"{Request.Url.Scheme}://{Request.Url.Host}{model.ReturnUrl}");
+                return Redirect(model.ReturnUrl);
             }
             else
             {
-                return RedirectToAction("UserLogIn", new { ReturnUrl = model.ReturnUrl });
+                return RedirectToAction("UserLogIn", new { model.ReturnUrl });
             }
 
         }
@@ -48,7 +58,7 @@ namespace BitTrade.Controllers
         [HttpPost]
         public ActionResult SignOut()
         {
-            AccountService.SignOut();
+            _accountService.SignOut();
 
             return RedirectToAction("UserLogIn");
         }
@@ -63,12 +73,16 @@ namespace BitTrade.Controllers
         {
             return View();
         }
-        public JsonResult GetUsers(string term)
+        public JsonResult GetUsers(string term = "a")
         {
-            var Users = UserService.GetUsers();
+            var Users = _userService.GetUsers();
             var Data = Users.Where(u => u.FirstName.ToLower().Contains(term.ToLower()));
 
-            return JsonNet(Data);
+            return JsonNet(Users);
         }
+        #endregion
+
+
+
     }
 }

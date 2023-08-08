@@ -1,13 +1,19 @@
 ﻿using BitTrade.Common.Models;
+using BitTrade.DAL.Interfaces;
 using System;
 using System.Web;
 using System.Web.Security;
 
-namespace BitTrade.BLL
+namespace BitTrade.BLL.Services
 {
-    public class AccountService
+    public class AccountService : IAccountService
     {
-        public static bool LogIn(LoginModel model)
+        private readonly IUnitOfWork _unitOfWork;
+        public AccountService(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+        public bool LogIn(LoginModel model)
         {
             if (model.Email == "davit.torosyan.2014@mai.ru" && model.Password == "test")
             {
@@ -22,10 +28,10 @@ namespace BitTrade.BLL
                 return true;
             }
 
-           return false;
+            return false;
         }
 
-        public static void SignOut()
+        public void SignOut()
         {
             FormsAuthentication.SignOut();
         }

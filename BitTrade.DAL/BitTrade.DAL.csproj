@@ -56,6 +56,9 @@
     <Compile Include="Friend.cs">
       <DependentUpon>TradeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Message.cs">
       <DependentUpon>TradeModel.tt</DependentUpon>
     </Compile>
@@ -66,6 +69,8 @@
     <Compile Include="Purchase.cs">
       <DependentUpon>TradeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\UnitOfWorkcs.cs" />
     <Compile Include="TradeModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,7 +89,7 @@
     <Compile Include="User.cs">
       <DependentUpon>TradeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BitTrade.Common\BitTrade.Common.csproj">
