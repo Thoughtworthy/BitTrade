@@ -158,7 +158,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\ApiController\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Pics\about2.png" />
+    <Content Include="Content\Styles\UserRegistration.css" />
     <Content Include="Content\Styles\UserLogIn.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\Pics\body_bg.jpg" />
@@ -209,6 +210,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Views\Home\UserLogIn.cshtml" />
+    <Content Include="Views\Home\UserRegistration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

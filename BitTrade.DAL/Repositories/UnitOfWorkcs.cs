@@ -10,10 +10,10 @@ namespace BitTrade.DAL.Repositories
         private readonly TradeEntities _dbContext;
         public IUserRepository _userRepository { get; set; }
 
-        public UnitOfWork()
+        public UnitOfWork(TradeEntities tradeEntities)
         {
-            _dbContext = new TradeEntities();
-            _userRepository = new UserRepository(_dbContext);
+            _dbContext = tradeEntities;
+            _userRepository = new UserRepository(tradeEntities);
         }
 
         public void Commit()

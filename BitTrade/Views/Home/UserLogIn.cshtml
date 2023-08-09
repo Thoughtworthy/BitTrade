@@ -21,11 +21,13 @@
                     <div class="form-outline mb-4">
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-lg", placeholder = "Enter a valid email address" })
                         @Html.LabelFor(m => m.Email, "Email address", new { @class = "form-label text-white" })
+                        @Html.ValidationMessageFor(m => m.Email)
                     </div>
                     <!-- Password input -->
                     <div class="form-outline mb-3">
                         @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg", placeholder = "Enter password" })
                         @Html.LabelFor(m => m.Password, "Password", new { @class = "form-label text-white" })
+                        @Html.ValidationMessageFor(m => m.Password)
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <!-- Checkbox -->
@@ -37,7 +39,7 @@
                     </div>
                     <div class="text-center text-lg-start mt-4 pt-2">
                         <input type="submit" value="Log In" class="btn btn-primary" />
-                        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!" class="link-danger">Register</a></p>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? @Html.ActionLink("Register", "UserRegistration", "Home", null, new { @class = "link-danger" })</p>
                     </div>
                 }
             </div>

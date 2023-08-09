@@ -44,7 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\UserModels.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\EnrollModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

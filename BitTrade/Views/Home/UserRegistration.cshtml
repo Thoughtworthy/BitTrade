@@ -1,0 +1,86 @@
+﻿@using BitTrade.Common.Models;
+
+@model EnrollModel
+
+@{
+    ViewBag.Title = "UserRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Styles/LogIn.css" rel="stylesheet" />
+
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                     class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                @using (Html.BeginForm("UserRegistration", "Home", FormMethod.Post))
+                {
+                    <!-- First Name input -->
+                    <div class="form-outline mb-2">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control form-control-lg", placeholder = "Enter your First Name" })
+                        @Html.LabelFor(m => m.FirstName, "Your first name", new { @class = "form-label text-white" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.FirstName)</span>
+                    </div>
+
+                    <!-- Last Name input -->
+                    <div class="form-outline mb-2">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control form-control-lg", placeholder = "Enter your Last Name" })
+                        @Html.LabelFor(m => m.LastName, "Your last name", new { @class = "form-label text-white" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.LastName)</span>
+
+
+                    </div>
+
+                    <!-- Date of Birth input -->
+                    <div class="form-outline mb-2">
+                        @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control form-control-lg", type = "date" })
+                        @Html.LabelFor(m => m.DateOfBirth, "Date of Birth", new { @class = "form-label text-white" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.DateOfBirth)</span>
+
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-2">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-lg", placeholder = "Enter a valid email address" })
+                        @Html.LabelFor(m => m.Email, "Email address", new { @class = "form-label text-white" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.Email)</span>
+
+                    </div>
+
+                    <!-- Gender selection -->
+                    <div class="form-outline mb-2">
+                        @Html.DropDownListFor(m => m.Gender, new SelectList(new List<string> { "Male", "Female", "Other" }), new { @class = "form-control form-control-lg" })
+                        @Html.LabelFor(m => m.Gender, "Gender", new { @class = "form-label text-white" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.Gender)</span>
+
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-2">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg", placeholder = "Enter password" })
+                        @Html.LabelFor(m => m.Password, "Password", new { @class = "form-label text-white" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.Password)</span>
+
+                    </div>
+                    <!-- Confirm Password input -->
+                    <div class="form-outline mb-2">
+                        @Html.PasswordFor(m => m.Confirmpwd, new { @class = "form-control form-control-lg", placeholder = "Confirm your password" })
+                        @Html.LabelFor(m => m.Confirmpwd, "Confirm Password", new { @class = "form-label text-white" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.Confirmpwd)</span>
+
+                    </div>
+
+                    <!-- ... (submit button and additional text) ... -->
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <input type="submit" value="Register" class="btn btn-primary" />
+
+                        <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? @Html.ActionLink("Log In", "UserLogIn", "Home", null, new { @class = "link-danger" })</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

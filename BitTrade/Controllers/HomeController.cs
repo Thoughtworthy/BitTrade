@@ -21,7 +21,6 @@ namespace BitTrade.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-
             return View();
         }
         public ActionResult UserProfile()
@@ -35,8 +34,6 @@ namespace BitTrade.Controllers
         {
             if (_accountService.LogIn(model))
             {
-
-                //Redirect($"{Request.Url.Scheme}://{Request.Url.Host}{model.ReturnUrl}");
                 return Redirect(model.ReturnUrl);
             }
             else
@@ -61,6 +58,30 @@ namespace BitTrade.Controllers
             _accountService.SignOut();
 
             return RedirectToAction("UserLogIn");
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult UserRegistration()
+        {
+            return View(new EnrollModel());
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult UserRegistration(EnrollModel model)
+        {
+            bool valid = ModelState.IsValid;
+            if (valid)
+            {
+                _accountService.Register(model);
+                return Redirect("UserLogIn");
+            }
+            else
+            {
+                return View(model);
+            }
+
         }
 
 

@@ -19,6 +19,7 @@ namespace BitTrade.DAL.Repositories
             _context = context;
             _dbSet = context.Set<TEntity>();
         }
+
         public virtual IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
@@ -51,6 +52,7 @@ namespace BitTrade.DAL.Repositories
         {
             return _dbSet.Find(id);
         }
+
         public virtual void Insert(TEntity entity)
         {
             _dbSet.Add(entity);

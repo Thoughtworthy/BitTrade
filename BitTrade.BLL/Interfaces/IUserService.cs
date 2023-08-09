@@ -9,6 +9,6 @@ namespace BitTrade.BLL.Services
 {
     public interface IUserService
     {
-        List<UserModels> GetUsers();
+        List<UserModel> GetUsers();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BitTrade.BLL.Services;
+using BitTrade.DAL;
 using BitTrade.DAL.Interfaces;
 using BitTrade.DAL.Repositories;
 using SimpleInjector;
@@ -23,9 +24,12 @@ namespace BitTrade.Configuration
 
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
             container.Options.ResolveUnregisteredConcreteTypes = true;
-
+            container.Options.AllowOverridingRegistrations = true;
             // Register your types, for instance:
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
+            container.Register<IAccountService>(() => new AccountService(container.GetInstance<IUnitOfWork> ()), Lifestyle.Scoped);
+            container.Register<IUserService>(() => new UserService(container.GetInstance<IUnitOfWork>()), Lifestyle.Scoped);
+            container.Register<TradeEntities, TradeEntities>(Lifestyle.Scoped);
             RegisterServices(container);
 
             // This is an extension method from the integration package.

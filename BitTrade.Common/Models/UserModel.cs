@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BitTrade.Common.Models
 {
-    public class UserModels
+    public class UserModel
     {
 
         [JsonIgnore]
