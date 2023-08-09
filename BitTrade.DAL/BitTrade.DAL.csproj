@@ -86,10 +86,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TradeModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="User.cs">
       <DependentUpon>TradeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BitTrade.Common\BitTrade.Common.csproj">

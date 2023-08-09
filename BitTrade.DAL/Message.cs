@@ -19,7 +19,7 @@ namespace BitTrade.DAL
         public int User2ID { get; set; }
         public string Text { get; set; }
     
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
+        public virtual User FromUser { get; set; }
+        public virtual User ToUser { get; set; }
     }
 }

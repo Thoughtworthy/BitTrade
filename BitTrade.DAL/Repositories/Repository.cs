@@ -27,6 +27,11 @@ namespace BitTrade.DAL.Repositories
         {
             IQueryable<TEntity> query = _dbSet;
 
+            if (asNoTracking)
+            {
+                query = query.AsNoTracking();
+            }
+
             if (filter != null)
             {
                 query = query.Where(filter);
@@ -42,10 +47,7 @@ namespace BitTrade.DAL.Repositories
                 query = orderBy(query);
             }
 
-            if (asNoTracking)
-            {
-                return query.AsNoTracking().ToList();
-            }
+
             return query.ToList();
         }
         public virtual TEntity GetByID(object id)

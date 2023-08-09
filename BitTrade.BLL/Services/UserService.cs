@@ -15,20 +15,6 @@ namespace BitTrade.BLL.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public List<UserModel> GetUsers()
-        {
-            var User = _unitOfWork._userRepository.Get();
 
-            // _unitOfWork.Commit();
-
-            var result = User.Select(p => new UserModel
-            {
-                ID = p.ID,
-                FirstName = p.FirstName,
-                Email = p.Email,
-                DateOfBirth = p.DateOfBirth,
-            }).ToList();
-            return result;
-        }
     }
 }

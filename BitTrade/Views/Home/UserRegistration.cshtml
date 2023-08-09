@@ -15,12 +15,13 @@
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                      class="img-fluid" alt="Sample image">
             </div>
-            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" style="margin-top:12px;">
+
                 @using (Html.BeginForm("UserRegistration", "Home", FormMethod.Post))
                 {
                     <!-- First Name input -->
                     <div class="form-outline mb-2">
-                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control form-control-lg", placeholder = "Enter your First Name" })
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control form-control-lg margin", placeholder = "Enter your First Name" })
                         @Html.LabelFor(m => m.FirstName, "Your first name", new { @class = "form-label text-white" })
                         <span class="text-danger">@Html.ValidationMessageFor(m => m.FirstName)</span>
                     </div>
@@ -52,10 +53,9 @@
 
                     <!-- Gender selection -->
                     <div class="form-outline mb-2">
-                        @Html.DropDownListFor(m => m.Gender, new SelectList(new List<string> { "Male", "Female", "Other" }), new { @class = "form-control form-control-lg" })
-                        @Html.LabelFor(m => m.Gender, "Gender", new { @class = "form-label text-white" })
+                        @Html.DropDownListFor(m => m.Gender, new SelectList(Enum.GetValues(typeof(BitTrade.Common.Enums.GenderEnum))), new { @class = "form-control form-control-lg" })
+                        @Html.LabelFor(m => m.Gender, new { @class = "form-label text-white" })
                         <span class="text-danger">@Html.ValidationMessageFor(m => m.Gender)</span>
-
                     </div>
 
                     <!-- Password input -->
@@ -74,7 +74,7 @@
                     </div>
 
                     <!-- ... (submit button and additional text) ... -->
-                    <div class="text-center text-lg-start mt-4 pt-2">
+                    <div class="text-center text-lg-start  pt-2">
                         <input type="submit" value="Register" class="btn btn-primary" />
 
                         <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? @Html.ActionLink("Log In", "UserLogIn", "Home", null, new { @class = "link-danger" })</p>

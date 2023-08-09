@@ -10,9 +10,9 @@ namespace BitTrade.Common.Models
 {
     public class LoginModel
     {
-        [Required]
+        [Required(ErrorMessage = "Please enter Email")]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter Password")]
         public string Password { get; set; }
         public bool RememberMe { get; set; }
         public string ReturnUrl { get; set; }

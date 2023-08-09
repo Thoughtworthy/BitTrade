@@ -29,7 +29,7 @@ namespace BitTrade.DAL
         public virtual DbSet<Friend> Friends { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Purchase> Purchases { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

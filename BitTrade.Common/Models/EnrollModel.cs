@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BitTrade.Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace BitTrade.Common.Models
 
         [Display(Name = "Gender")]
         [Required(ErrorMessage = "Please Select the gender")]
-        public string Gender { get; set; }
+        public GenderEnum Gender { get; set; }
 
         [Required(ErrorMessage = "Please enter password")]
         [DataType(DataType.Password)]
@@ -46,7 +47,7 @@ namespace BitTrade.Common.Models
         [DataType(DataType.Password)]
         public string Confirmpwd { get; set; }
 
-        public string Role { get; set; } = "User";
+        public RoleEnum Role { get; set; } = RoleEnum.user;
         public bool IsActive { get; set; } = true;
         public string ImageURL { get; set; } = null;
     }

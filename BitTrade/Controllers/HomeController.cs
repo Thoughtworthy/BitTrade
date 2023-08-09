@@ -38,7 +38,7 @@ namespace BitTrade.Controllers
             }
             else
             {
-                return RedirectToAction("UserLogIn", new { model.ReturnUrl });
+                return View("UserLogIn", model);
             }
 
         }
@@ -93,13 +93,6 @@ namespace BitTrade.Controllers
         public ActionResult Contact()
         {
             return View();
-        }
-        public JsonResult GetUsers(string term = "a")
-        {
-            var Users = _userService.GetUsers();
-            var Data = Users.Where(u => u.FirstName.ToLower().Contains(term.ToLower()));
-
-            return JsonNet(Users);
         }
         #endregion
 
