@@ -14,6 +14,7 @@ namespace BitTrade.DAL.Interfaces
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
         string includeProperties = "",
         bool asNoTracking = true);
+        bool Any(Func<TEntity, bool> filter);
         TEntity GetByID(object id);
         void Insert(TEntity entity);
         void Delete(object id);

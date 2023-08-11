@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace BitTrade.Common.Enums
 {
-    public enum RoleEnum : short
+    public enum BaseGenderEnum : byte
     {
-        admin = 0,
-        user = 1,
+        Unknown = 0,
+        male = 1,
+        female = 2,
     }
 }

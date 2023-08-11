@@ -25,10 +25,9 @@ namespace BitTrade.Configuration
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
             container.Options.ResolveUnregisteredConcreteTypes = true;
             container.Options.AllowOverridingRegistrations = true;
+
             // Register your types, for instance:
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
-            container.Register<IAccountService>(() => new AccountService(container.GetInstance<IUnitOfWork> ()), Lifestyle.Scoped);
-            container.Register<IUserService>(() => new UserService(container.GetInstance<IUnitOfWork>()), Lifestyle.Scoped);
             container.Register<TradeEntities, TradeEntities>(Lifestyle.Scoped);
             RegisterServices(container);
 
@@ -51,6 +50,12 @@ namespace BitTrade.Configuration
                     .SelectMany(t => t.GetTypes())
                     .Where(t => t.IsClass && t.Namespace == "BitTrade.BLL.Services");
 
+            //var assemblies = BuildManager.GetReferencedAssemblies().Cast<Assembly>();
+            //var serviceTypes = assemblies
+            //    .SelectMany(t => t.GetTypes())
+            //    .Where(t => t.IsClass && t.Namespace == "BenivoNetwork.BLL.Services");
+
+
             foreach (var serviceType in serviceTypes)
             {
                 var interfaceType = serviceType.GetInterface($"I{serviceType.Name}");
@@ -63,3 +68,7 @@ namespace BitTrade.Configuration
         }
     }
 }
+
+
+//container.Register<IUserService>(() => new UserService(container.GetInstance<IUnitOfWork>()), Lifestyle.Scoped);
+//container.Register<IAccountService>(() => new AccountService(container.GetInstance<IUnitOfWork>(), container.GetInstance<SecurityService>()), Lifestyle.Scoped);

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitTrade.Common", "BitTrade
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitTrade.Configuration", "BitTrade.Configuration\BitTrade.Configuration.csproj", "{35E8E4CD-FEB3-4332-93BB-7E4BD769EF73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitTrade.BLL.Configuration", "BitTrade.BLL.Configuration\BitTrade.BLL.Configuration.csproj", "{380353FB-A3CC-4920-A9A7-E9E70CEC773E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{35E8E4CD-FEB3-4332-93BB-7E4BD769EF73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35E8E4CD-FEB3-4332-93BB-7E4BD769EF73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35E8E4CD-FEB3-4332-93BB-7E4BD769EF73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{380353FB-A3CC-4920-A9A7-E9E70CEC773E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{380353FB-A3CC-4920-A9A7-E9E70CEC773E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{380353FB-A3CC-4920-A9A7-E9E70CEC773E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{380353FB-A3CC-4920-A9A7-E9E70CEC773E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

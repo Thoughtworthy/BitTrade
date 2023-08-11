@@ -1,19 +1,14 @@
 ﻿using BitTrade.Common.Enums;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace BitTrade.Common.Models
 {
-    public class EnrollModel
+    public class RegisterModel
     {
 
-        [Display(Name = "ID")]
-        public int ID { get; set; }
+        //[Display(Name = "ID")]
+        //public int ID { get; set; }
 
         [Required(ErrorMessage = "Please enter FirstName")]
         [Display(Name = "FirstName")]
@@ -32,7 +27,7 @@ namespace BitTrade.Common.Models
 
         [Display(Name = "Gender")]
         [Required(ErrorMessage = "Please Select the gender")]
-        public GenderEnum Gender { get; set; }
+        public BaseGenderEnum Gender { get; set; } = BaseGenderEnum.Unknown;
 
         [Required(ErrorMessage = "Please enter password")]
         [DataType(DataType.Password)]
@@ -47,8 +42,9 @@ namespace BitTrade.Common.Models
         [DataType(DataType.Password)]
         public string Confirmpwd { get; set; }
 
-        public RoleEnum Role { get; set; } = RoleEnum.user;
+        public BaseRoleEnum Role { get; set; } = BaseRoleEnum.user;
         public bool IsActive { get; set; } = true;
-        public string ImageURL { get; set; } = null;
+        public string ImageURL { get; set; }
+        public string EmailErrorMessage { get; set; }
     }
 }

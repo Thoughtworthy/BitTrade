@@ -1,6 +1,9 @@
-﻿using BitTrade.Common.Models;
+﻿using BitTrade.BLL.Configuration;
+using BitTrade.BLL.Extensions;
+using BitTrade.Common.Models;
 using BitTrade.DAL;
 using BitTrade.DAL.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Web;
@@ -11,41 +14,68 @@ namespace BitTrade.BLL.Services
     public class AccountService : IAccountService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public AccountService(IUnitOfWork unitOfWork)
+        private readonly ISecurityService _securityService;
+        public AccountService(IUnitOfWork unitOfWork, ISecurityService securityService)
         {
             _unitOfWork = unitOfWork;
+            _securityService = securityService;
         }
 
-        public bool LogIn(LoginModel model)
+        public LoginResultModel LogIn(LoginModel model)
         {
-            var User = _unitOfWork._userRepository.Get(u => u.Email == model.Email);
-            bool isExist = false;
 
-            if (User.Count() != 0)
+            var user = _unitOfWork._userRepository
+                .Get(u => u.Email == model.Email).FirstOrDefault();
+
+            if (user == null)
             {
-               isExist = User?.FirstOrDefault()?.Password == model.Password;
+                return new LoginResultModel
+                {
+                    IsSuccessful = false,
+                    EmailErrorMessage = "User is not found."
+                };
             }
 
-            if (isExist)
+            if (!_securityService.ValidatePassword(model.Password, user.Password, user.Salt))
             {
-                //FormsAuthentication.SetAuthCookie(model.Email, true);
-                var authTicket = new FormsAuthenticationTicket(1, model.Email, DateTime.Now, DateTime.Now.AddMinutes(10080), model.RememberMe, "Moderator:Admin");
-                var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-
-                HttpContext.Current.Response.Cookies.Add(authCookie);
-
-                return true;
+                return new LoginResultModel
+                {
+                    IsSuccessful = false,
+                    PasswordErrorMessage = "Password is not correct."
+                };
             }
 
-            return false;
+            var userData = JsonConvert.SerializeObject(user.MapTo<AccountModel>());
+            var authTicket = new FormsAuthenticationTicket(1, user.Email, DateTime.Now, DateTime.Now.AddMinutes(10080), model.RememberMe, userData);
+            var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+            var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+
+            HttpContext.Current.Response.Cookies.Add(authCookie);
+
+            return new LoginResultModel
+            {
+                IsSuccessful = true
+            };
         }
 
-        public void Register(EnrollModel model)
+        public RegisterResultModel Register(RegisterModel model)
         {
+
+
+            if (_unitOfWork._userRepository.Any(u => u.Email == model.Email))
+            {
+                return new RegisterResultModel
+                {
+                    IsSuccessful = false,
+                    EmailErrorMessage = "User is already registered."
+                };
+            }
+
+            string salt = _securityService.GetRandomString();
+            string passwordHash = _securityService.GetSHA256($"{model.Password}{salt}");
+
             User user = new User
             {
-
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 DateOfBirth = model.DateOfBirth,
@@ -53,13 +83,19 @@ namespace BitTrade.BLL.Services
                 Email = model.Email,
                 Gender = model.Gender,
                 ImageURL = model.ImageURL,
-                Password = model.Password,
+                Password = passwordHash,
                 Role = model.Role,
-
+                Salt = salt,
             };
+
             _unitOfWork._userRepository.Insert(user);
-            //TODO: reg 
             _unitOfWork.Commit();
+
+            return new RegisterResultModel
+            {
+                IsSuccessful = true,
+                ID = user.ID
+            };
         }
 
         public void SignOut()

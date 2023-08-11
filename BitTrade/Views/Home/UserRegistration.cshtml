@@ -1,10 +1,9 @@
 ﻿@using BitTrade.Common.Models;
 
-@model EnrollModel
+@model RegisterModel
 
 @{
     ViewBag.Title = "UserRegistration";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/Styles/LogIn.css" rel="stylesheet" />
 
@@ -19,6 +18,10 @@
 
                 @using (Html.BeginForm("UserRegistration", "Home", FormMethod.Post))
                 {
+                    if (Model.EmailErrorMessage != null)
+                    {
+                        <span class="text-danger">@Model.EmailErrorMessage</span>
+                    }
                     <!-- First Name input -->
                     <div class="form-outline mb-2">
                         @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control form-control-lg margin", placeholder = "Enter your First Name" })
@@ -49,13 +52,6 @@
                         @Html.LabelFor(m => m.Email, "Email address", new { @class = "form-label text-white" })
                         <span class="text-danger">@Html.ValidationMessageFor(m => m.Email)</span>
 
-                    </div>
-
-                    <!-- Gender selection -->
-                    <div class="form-outline mb-2">
-                        @Html.DropDownListFor(m => m.Gender, new SelectList(Enum.GetValues(typeof(BitTrade.Common.Enums.GenderEnum))), new { @class = "form-control form-control-lg" })
-                        @Html.LabelFor(m => m.Gender, new { @class = "form-label text-white" })
-                        <span class="text-danger">@Html.ValidationMessageFor(m => m.Gender)</span>
                     </div>
 
                     <!-- Password input -->

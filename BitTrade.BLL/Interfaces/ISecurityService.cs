@@ -7,8 +7,11 @@ using System.Linq;
 
 namespace BitTrade.BLL.Services
 {
-    public interface IUserService
+    public interface ISecurityService
     {
-        UserModel GetUserByID(int id);
+        string GetRandomString();
+
+        string GetSHA256(string content);
+        bool ValidatePassword(string inputPassword, string userPassword, string salt);
     }
 }

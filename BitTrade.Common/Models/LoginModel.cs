@@ -1,10 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BitTrade.Common.Models
 {
@@ -16,5 +10,9 @@ namespace BitTrade.Common.Models
         public string Password { get; set; }
         public bool RememberMe { get; set; }
         public string ReturnUrl { get; set; }
+        public string EmailErrorMessage { get; set; }
+        public string PasswordErrorMessage { get; set; }
+
+
     }
 }

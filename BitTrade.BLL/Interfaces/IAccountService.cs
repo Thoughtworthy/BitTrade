@@ -7,8 +7,8 @@ namespace BitTrade.BLL.Services
 {
     public interface IAccountService
     {
-        bool LogIn(LoginModel model);
+        LoginResultModel LogIn(LoginModel model);
         void SignOut();
-        void Register(EnrollModel model);
+        RegisterResultModel Register(RegisterModel model);
     }
 }

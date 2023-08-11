@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{42E79DBC-E38A-4257-AC24-1D17542DE305}</ProjectGuid>
+    <ProjectGuid>{380353FB-A3CC-4920-A9A7-E9E70CEC773E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BitTrade.Common</RootNamespace>
-    <AssemblyName>BitTrade.Common</AssemblyName>
+    <RootNamespace>BitTrade.BLL.Configuration</RootNamespace>
+    <AssemblyName>BitTrade.BLL.Configuration</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,9 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,16 +44,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\BaseRoleEnum.cs" />
-    <Compile Include="Enums\BaseGenderEnum.cs" />
-    <Compile Include="Models\AccountModel.cs" />
-    <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\RegisterResultModel.cs" />
-    <Compile Include="Models\LoginResultModel.cs" />
-    <Compile Include="Models\ResultModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
-    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="AutoMapperConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BitTrade.Common\BitTrade.Common.csproj">
+      <Project>{42E79DBC-E38A-4257-AC24-1D17542DE305}</Project>
+      <Name>BitTrade.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BitTrade.DAL\BitTrade.DAL.csproj">
+      <Project>{21F52A7E-F378-4C3B-B4F8-4976057459BA}</Project>
+      <Name>BitTrade.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

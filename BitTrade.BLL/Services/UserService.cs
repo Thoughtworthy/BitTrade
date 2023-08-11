@@ -1,20 +1,24 @@
-﻿using BitTrade.Common.Models;
-using BitTrade.DAL;
+﻿using BitTrade.BLL.Extensions;
+using BitTrade.Common.Models;
 using BitTrade.DAL.Interfaces;
-using BitTrade.DAL.Repositories;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BitTrade.BLL.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        readonly IUnitOfWork _unitOfWork;
 
         public UserService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
+        public UserModel GetUserByID(int id)
+        {
+            var user = _unitOfWork._userRepository.GetByID(id);
+
+            return user.MapTo<UserModel>();
+
+        }
     }
 }

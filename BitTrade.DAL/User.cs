@@ -17,10 +17,10 @@ namespace BitTrade.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.SnetFriendship = new HashSet<Friend>();
-            this.RecevieFriendship = new HashSet<Friend>();
-            this.SentMessages = new HashSet<Message>();
-            this.ReciveMessages = new HashSet<Message>();
+            this.Friends = new HashSet<Friend>();
+            this.Friends1 = new HashSet<Friend>();
+            this.Messages = new HashSet<Message>();
+            this.Messages1 = new HashSet<Message>();
             this.Notifications = new HashSet<Notification>();
             this.Purchases = new HashSet<Purchase>();
         }
@@ -31,19 +31,20 @@ namespace BitTrade.DAL
         public System.DateTime DateOfBirth { get; set; }
         public bool IsActive { get; set; }
         public string Email { get; set; }
-        public BitTrade.Common.Enums.GenderEnum Gender { get; set; }
+        public BitTrade.Common.Enums.BaseGenderEnum Gender { get; set; }
         public string ImageURL { get; set; }
         public string Password { get; set; }
-        public BitTrade.Common.Enums.RoleEnum Role { get; set; }
+        public string Salt { get; set; }
+        public BitTrade.Common.Enums.BaseRoleEnum Role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Friend> SnetFriendship { get; set; }
+        public virtual ICollection<Friend> Friends { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Friend> RecevieFriendship { get; set; }
+        public virtual ICollection<Friend> Friends1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> SentMessages { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> ReciveMessages { get; set; }
+        public virtual ICollection<Message> Messages1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Notification> Notifications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
