@@ -8,6 +8,5 @@ namespace BitTrade.DAL.Interfaces
 {
     public interface IUserRepository : IRepository<User>
     {
-       
     }
 }

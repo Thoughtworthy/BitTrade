@@ -18,6 +18,7 @@ namespace BitTrade.DAL
         public int User1ID { get; set; }
         public int User2ID { get; set; }
         public string Text { get; set; }
+        public System.DateTime Date { get; set; }
     
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }

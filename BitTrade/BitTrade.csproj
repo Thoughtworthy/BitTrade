@@ -156,13 +156,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ApiControllers\MessageController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ApiController\UserController.cs" />
+    <Compile Include="Controllers\ApiControllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ClaimHelper.cs" />
     <Compile Include="Models\JsonNetResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -185,7 +185,7 @@
     <Content Include="Content\Pics\wa2.svg" />
     <Content Include="Content\Pics\wa3.svg" />
     <Content Include="Content\Pics\wa4.svg" />
-    <Content Include="Content\Styles\style.css" />
+    <Content Include="Content\Styles\Style.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Pics\.DS_Store" />
     <Content Include="Scripts\Common.js" />

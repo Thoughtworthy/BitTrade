@@ -1,11 +1,12 @@
-﻿using System;
+﻿using BitTrade.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace BitTrade.Controllers
+namespace BitTrade.Controllers.ApiControllers
 {
     public class UserController : ApiController
     {
@@ -20,6 +21,11 @@ namespace BitTrade.Controllers
         public IHttpActionResult Post([FromBody] string value)
         {
             return Ok(value);
+        }
+        public IHttpActionResult Put(UserModel model)
+        {
+
+            return Ok();
         }
     }
 }

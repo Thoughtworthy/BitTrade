@@ -949,3 +949,10 @@ ul.email li i {
 .list-group.list-group-flush li {
     background-color:#03273f;
 }
+
+#loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

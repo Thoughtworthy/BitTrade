@@ -1,11 +1,19 @@
 ﻿@using BitTrade.Common.Models
+@using BitTrade.Common.Helpers
 
 @model UserModel
-
 @{
-    ViewBag.Title = "Profile";
-}
 
+    ViewBag.Title = "Profile";
+
+    var imgUrl = Model.ImageURL;
+
+    var claimID = ClaimHelper.GetClaim("ID");
+}
+<script src="~/Scripts/UserProfile.js"></script>
+<script>
+    let _editURL = "@Url.RouteUrl("DefaultApi", new { httpRoute = "", controller = "User" })";
+</script>
 
 <div class="container">
     <div class="main-body">
@@ -28,6 +36,8 @@
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
+
+
                                 <h4>@Model.FullName</h4>
                                 <p class="text-secondary mb-1">Թրեյդեր</p>
                                 <button class="btn btn-primary">Հետևել</button>
@@ -64,54 +74,93 @@
             <div class="col-md-8 ">
                 <div class="card mb-3" style="background-color: #03273f">
                     <div class="card-body">
+
                         <div class="row">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Անուն</h6>
                             </div>
+
+                            <div class="d-none">
+                                @Html.HiddenFor(m => m.ID)
+                            </div>
+
+                            <div class="userprofile-data col-sm-9 text-secondary">
+                                @Model.FirstName
+                            </div>
                             <div class="col-sm-9 text-secondary">
-                                @Model.FullName
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control userprofileinput-data  d-none" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Ազգանուն</h6>
+                            </div>
+                            <div class="userprofile-data col-sm-9 text-secondary">
+                                @Model.LastName
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control userprofileinput-data  d-none" })
                             </div>
                         </div>
                         <hr>
+
                         <div class="row">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Էմայլ հասցե</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
+                            <div class="userprofile-data col-sm-9 text-secondary">
                                 @Model.Email
+                            </div>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control userprofileinput-data  d-none" })
                             </div>
                         </div>
                         <hr>
+
                         <div class="row">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Ծննդյան օր/ա/տ</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
+                            <div class="userprofile-data col-sm-9 text-secondary">
                                 @Model.DateOfBirth.ToString("dd/MM/yyyy")
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                @Html.TextBoxFor(m => m.DateOfBirth, "{0:yyyy-MM-dd}", new { @class = "form-control form-control-lg userprofileinput-data  d-none", type = "date", id = "DateOfBirthInput" })
                             </div>
                         </div>
                         <hr>
+
                         <div class="row">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Սեռ</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
+                            <div class="userprofile-data col-sm-9 text-secondary">
                                 @Model.Gender
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                @Html.DropDownListFor(m => m.Gender, new SelectList(Enum.GetValues(typeof(BitTrade.Common.Enums.BaseGenderEnum))), new { @class = "form-control userprofileinput-data  d-none" })
                             </div>
                         </div>
                         <hr>
+
                         <div class="row">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Կարգավիճակ</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
-                                @Model.Role
+                            <div class="col-sm-9 text-white">
+                                <span id="Role">@Html.ValueFor(m => m.Role)</span>
                             </div>
                         </div>
                         <hr>
+
                         <div class="row">
+                            <div class="userprofile-data col-sm-12">
+                                <button class="btn btn-primary" id="edit">Edit</button>
+                            </div>
                             <div class="col-sm-12">
-                                <a class="btn btn-primary " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                                <button class="btn btn-primary userprofileinput-data d-none" id="savechanges">Save Changes</button>
+                                <button class="btn btn-secondary userprofileinput-data d-none" id="cenceledit">Cencel</button>
                             </div>
                         </div>
                     </div>
@@ -119,6 +168,51 @@
 
             </div>
         </div>
-
     </div>
 </div>
+
+@*<div class="row mb-3">
+        <div class="col-sm-3">
+            <h6 class="mb-0">Full Name</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="form-control" value="John Doe">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <h6 class="mb-0">Email</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="form-control" value="john@example.com">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <h6 class="mb-0">Phone</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="form-control" value="(239) 816-9029">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <h6 class="mb-0">Mobile</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="form-control" value="(320) 380-4539">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <h6 class="mb-0">Address</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="form-control" value="Bay Area, San Francisco, CA">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-9 text-secondary">
+            <input type="button" class="btn btn-primary px-4" value="Save Changes">
+        </div>*@

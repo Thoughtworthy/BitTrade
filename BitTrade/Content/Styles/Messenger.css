@@ -60,17 +60,29 @@ small, .small {
     padding: 3px 5px;
 }
 
-.chat-message {
-    padding: 60px 20px 115px;
+
+.chat-container {
+    display: flex;
+    height: 500px;
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-radius: 5px;
+    background: #0507229c;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.chat-scroll {
+    max-height: calc(100% - 40px); 
+    overflow-y: auto;
+}
+
+.input-group {
+    margin-top: 10px;
 }
 
 .chat {
     list-style: none;
     margin: 0;
-}
-
-.chat-message {
-    background: #0507229c;
 }
 
 .chat li img {
@@ -158,14 +170,6 @@ img {
         background-color: #1d3d52;
     }
 
-.chat-box {
-    padding: 15px;
-    border-top: 1px solid #eee;
-    transition: all .5s ease;
-    -webkit-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -o-transition: all .5s ease;
-}
 
 .primary-font {
     color: #3c8dbc;
@@ -175,3 +179,4 @@ a:hover, a:active, a:focus {
     text-decoration: none;
     outline: 0;
 }
+

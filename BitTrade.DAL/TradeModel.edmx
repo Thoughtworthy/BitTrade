@@ -30,6 +30,7 @@
           <Property Name="User1ID" Type="int" Nullable="false" />
           <Property Name="User2ID" Type="int" Nullable="false" />
           <Property Name="Text" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -294,6 +295,7 @@
           <Property Name="Text" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="TradeModel.FK_Table_1_User1" FromRole="Message" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="TradeModel.FK_Table_1_User2" FromRole="Message" ToRole="User" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           </EntityType>
         <EntityType Name="User">
           <Key>
@@ -310,10 +312,10 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="288" FixedLength="false" Unicode="false" />
           <Property Name="Salt" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
           <Property Name="Role" Type="TradeModel.BaseRoleEnum" Nullable="false" />
-          <NavigationProperty Name="Friends" Relationship="TradeModel.FK_Friend_User1" FromRole="User" ToRole="Friend" />
-          <NavigationProperty Name="Friends1" Relationship="TradeModel.FK_Friend_User2" FromRole="User" ToRole="Friend" />
-          <NavigationProperty Name="Messages" Relationship="TradeModel.FK_Table_1_User1" FromRole="User" ToRole="Message" />
-          <NavigationProperty Name="Messages1" Relationship="TradeModel.FK_Table_1_User2" FromRole="User" ToRole="Message" />
+          <NavigationProperty Name="SentFriends" Relationship="TradeModel.FK_Friend_User1" FromRole="User" ToRole="Friend" />
+          <NavigationProperty Name="ReciveFriends" Relationship="TradeModel.FK_Friend_User2" FromRole="User" ToRole="Friend" />
+          <NavigationProperty Name="SentMessages" Relationship="TradeModel.FK_Table_1_User1" FromRole="User" ToRole="Message" />
+          <NavigationProperty Name="ReciveMessages" Relationship="TradeModel.FK_Table_1_User2" FromRole="User" ToRole="Message" />
           <NavigationProperty Name="Notifications" Relationship="TradeModel.FK_Notification_User" FromRole="User" ToRole="Notification" />
           <NavigationProperty Name="Purchases" Relationship="TradeModel.FK_Purchase_User" FromRole="User" ToRole="Purchase" />
         </EntityType>
@@ -442,6 +444,7 @@
           <EntitySetMapping Name="Messages">
             <EntityTypeMapping TypeName="TradeModel.Message">
               <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="User2ID" ColumnName="User2ID" />
                 <ScalarProperty Name="User1ID" ColumnName="User1ID" />

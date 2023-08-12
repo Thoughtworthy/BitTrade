@@ -5,6 +5,7 @@ namespace BitTrade.BLL.Extensions
 {
     public static class AutoMapperExtensions
     {
+        
         public static T MapTo<T>(this object ob)
         {
             return AutoMapperConfiguration.Instance.Map<T>(ob);

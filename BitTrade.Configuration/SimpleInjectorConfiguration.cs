@@ -6,7 +6,6 @@ using SimpleInjector;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
 using SimpleInjector.Integration.WebApi;
-using SimpleInjector.Lifestyles;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -29,6 +28,7 @@ namespace BitTrade.Configuration
             // Register your types, for instance:
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
             container.Register<TradeEntities, TradeEntities>(Lifestyle.Scoped);
+            container.Register<IAccountService>(() => new AccountService(container.GetInstance<IUnitOfWork>(), container.GetInstance<ISecurityService>()), Lifestyle.Scoped);
             RegisterServices(container);
 
             // This is an extension method from the integration package.

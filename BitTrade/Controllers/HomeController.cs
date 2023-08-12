@@ -16,13 +16,11 @@ namespace BitTrade.Controllers
             _userService = userService;
         }
 
-
         [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
-
 
         public ActionResult UserProfile(int? id)
         {
@@ -47,7 +45,6 @@ namespace BitTrade.Controllers
 
         }
 
-
         [HttpPost]
         [AllowAnonymous]
         public ActionResult UserLogIn(LoginModel model)
@@ -67,14 +64,12 @@ namespace BitTrade.Controllers
             return Redirect(model.ReturnUrl);
         }
 
-
         [HttpGet]
         [AllowAnonymous]
         public ActionResult UserRegistration()
         {
             return View(new RegisterModel());
         }
-
 
         [HttpPost]
         [AllowAnonymous]
@@ -97,7 +92,6 @@ namespace BitTrade.Controllers
 
         }
 
-
         [HttpPost]
         public ActionResult SignOut()
         {
@@ -105,24 +99,21 @@ namespace BitTrade.Controllers
 
             return RedirectToAction("UserLogIn");
         }
-
+        public ActionResult Messenger()
+        {
+            return View();
+        }
 
         public ActionResult Exchange()
         {
             return View();
         }
 
-
         public ActionResult Contact()
         {
             return View();
         }
 
-
-        public ActionResult Messenger()
-        {
-            return View();
-        }
 
     }
 }

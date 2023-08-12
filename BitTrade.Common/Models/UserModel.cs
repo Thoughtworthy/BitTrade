@@ -18,8 +18,8 @@ namespace BitTrade.Common.Models
         public string Email { get; set; }
         public BaseGenderEnum Gender { get; set; } = BaseGenderEnum.Unknown;
         public BaseRoleEnum Role { get; set; } = BaseRoleEnum.user;
-        public bool IsActive { get; set; }
-        public string ImageURL { get; set; } = null;
+        public bool IsActive { get; set; } = true;
+        public string ImageURL { get; set; }
 
         public string FullName
         {

@@ -1,5 +1,4 @@
-﻿using BitTrade.BLL.Configuration;
-using BitTrade.BLL.Extensions;
+﻿using BitTrade.BLL.Extensions;
 using BitTrade.Common.Models;
 using BitTrade.DAL;
 using BitTrade.DAL.Interfaces;
@@ -27,12 +26,12 @@ namespace BitTrade.BLL.Services
             var user = _unitOfWork._userRepository
                 .Get(u => u.Email == model.Email).FirstOrDefault();
 
-            if (user == null)
+            if (user == null || user.IsActive == false)
             {
                 return new LoginResultModel
                 {
                     IsSuccessful = false,
-                    EmailErrorMessage = "User is not found."
+                    EmailErrorMessage = "User is Undefined/Inactive."
                 };
             }
 

@@ -1,4 +1,40 @@
-﻿// Burger Menue Button click event
+﻿// Ajax call animation
+function showLoadingAnimation() {
+    $("#loading").removeClass("d-none");
+    $(".container").addClass("d-none");
+}
+
+function hideLoadingAnimation() {
+    setTimeout(function () {
+        $("#loading").addClass("d-none");
+        $(".container").removeClass("d-none");
+    }, 500);
+}
+//
+function ajaxCall(url, type, data, successCallBack, errorCallBack) {
+    $.ajax({
+        url: url,
+        beforeSend: showLoadingAnimation,
+        type: type,
+        data: data,
+        success: successCallBack,
+        error: errorCallBack,
+        complete: hideLoadingAnimation
+    });
+}
+
+function ajaxFormPost(url, selector, successCallBack, errorCallBack) {
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: $(selector).serialize(),
+        success: successCallBack,
+        error: errorCallBack
+    });
+}
+
+
+// Burger Menue Button click event
 let navOpen = false;
 function toggleNav() {
     if (navOpen) {
@@ -16,21 +52,3 @@ function closeNav() {
 }
 
 
-function ajaxCall(url, type, data, successCallBack, errorCallBack) {
-    $.ajax({
-        url: url,
-        type: type,
-        data: data,
-        success: successCallBack,
-        error: errorCallBack
-    });
-};
-function ajaxFormPost(url, selector,successCallBack, errorCallBack) {
-    $.ajax({
-        url: url,
-        type: "POST",
-        data: $(selector).serialize(),
-        success: successCallBack,
-        error: errorCallBack
-    });
-};
