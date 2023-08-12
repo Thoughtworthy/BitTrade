@@ -15,10 +15,15 @@ namespace BitTrade.BLL.Services
 
         public UserModel GetUserByID(int id)
         {
-            var user = _unitOfWork._userRepository.GetByID(id);
+            var user = _unitOfWork.UserRepository.GetByID(id);
 
             return user.MapTo<UserModel>();
 
+        }
+
+        public void Updaet(UserModel model)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

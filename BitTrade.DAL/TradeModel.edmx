@@ -19,16 +19,17 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User1ID" Type="int" Nullable="false" />
-          <Property Name="User2ID" Type="int" Nullable="false" />
+          <Property Name="FromUserID" Type="int" Nullable="false" />
+          <Property Name="ToUserID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User1ID" Type="int" Nullable="false" />
-          <Property Name="User2ID" Type="int" Nullable="false" />
+          <Property Name="FromUserID" Type="int" Nullable="false" />
+          <Property Name="ToUserID" Type="int" Nullable="false" />
           <Property Name="Text" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
@@ -77,7 +78,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Friend">
-              <PropertyRef Name="User1ID" />
+              <PropertyRef Name="FromUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -89,7 +90,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Friend">
-              <PropertyRef Name="User2ID" />
+              <PropertyRef Name="ToUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -137,7 +138,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Message">
-              <PropertyRef Name="User1ID" />
+              <PropertyRef Name="FromUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -149,7 +150,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Message">
-              <PropertyRef Name="User2ID" />
+              <PropertyRef Name="ToUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -203,16 +204,6 @@
           <Property Name="PriceByDollar" Type="Decimal" Precision="18" Scale="10" Nullable="false" />
           <NavigationProperty Name="Purchases" Relationship="TradeModel.FK_Purchase_Coin" FromRole="Coin" ToRole="Purchase" />
         </EntityType>
-        <EntityType Name="Friend">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User1ID" Type="Int32" Nullable="false" />
-          <Property Name="User2ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="TradeModel.FK_Friend_User1" FromRole="Friend" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="TradeModel.FK_Friend_User2" FromRole="Friend" ToRole="User" />
-          </EntityType>
         <EntityType Name="Notification">
           <Key>
             <PropertyRef Name="ID" />
@@ -239,15 +230,23 @@
         </EntityType>
         <EntityContainer Name="TradeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Coins" EntityType="Self.Coin" />
-          <EntitySet Name="Friends" EntityType="Self.Friend" />
           <EntitySet Name="Notifications" EntityType="Self.Notification" />
           <EntitySet Name="Purchases" EntityType="Self.Purchase" />
           <AssociationSet Name="FK_Purchase_Coin" Association="TradeModel.FK_Purchase_Coin">
             <End Role="Coin" EntitySet="Coins" />
             <End Role="Purchase" EntitySet="Purchases" />
           </AssociationSet>
-          <EntitySet Name="Messages" EntityType="TradeModel.Message" />
           <EntitySet Name="Users" EntityType="TradeModel.User" />
+          <AssociationSet Name="FK_Notification_User" Association="TradeModel.FK_Notification_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_User" Association="TradeModel.FK_Purchase_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Purchase" EntitySet="Purchases" />
+          </AssociationSet>
+          <EntitySet Name="Friends" EntityType="TradeModel.Friend" />
+          <EntitySet Name="Messages" EntityType="TradeModel.Message" />
           <AssociationSet Name="FK_Friend_User1" Association="TradeModel.FK_Friend_User1">
             <End Role="User" EntitySet="Users" />
             <End Role="Friend" EntitySet="Friends" />
@@ -264,14 +263,6 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Message" EntitySet="Messages" />
           </AssociationSet>
-          <AssociationSet Name="FK_Notification_User" Association="TradeModel.FK_Notification_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Notification" EntitySet="Notifications" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Purchase_User" Association="TradeModel.FK_Purchase_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Purchase" EntitySet="Purchases" />
-          </AssociationSet>
           </EntityContainer>
         <Association Name="FK_Purchase_Coin">
           <End Type="TradeModel.Coin" Role="Coin" Multiplicity="1" />
@@ -285,18 +276,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Message">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User1ID" Type="Int32" Nullable="false" />
-          <Property Name="User2ID" Type="Int32" Nullable="false" />
-          <Property Name="Text" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="TradeModel.FK_Table_1_User1" FromRole="Message" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="TradeModel.FK_Table_1_User2" FromRole="Message" ToRole="User" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
@@ -312,61 +291,13 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="288" FixedLength="false" Unicode="false" />
           <Property Name="Salt" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
           <Property Name="Role" Type="TradeModel.BaseRoleEnum" Nullable="false" />
-          <NavigationProperty Name="SentFriends" Relationship="TradeModel.FK_Friend_User1" FromRole="User" ToRole="Friend" />
-          <NavigationProperty Name="ReciveFriends" Relationship="TradeModel.FK_Friend_User2" FromRole="User" ToRole="Friend" />
-          <NavigationProperty Name="SentMessages" Relationship="TradeModel.FK_Table_1_User1" FromRole="User" ToRole="Message" />
-          <NavigationProperty Name="ReciveMessages" Relationship="TradeModel.FK_Table_1_User2" FromRole="User" ToRole="Message" />
           <NavigationProperty Name="Notifications" Relationship="TradeModel.FK_Notification_User" FromRole="User" ToRole="Notification" />
           <NavigationProperty Name="Purchases" Relationship="TradeModel.FK_Purchase_User" FromRole="User" ToRole="Purchase" />
-        </EntityType>
-        <Association Name="FK_Friend_User1">
-          <End Type="TradeModel.User" Role="User" Multiplicity="1" />
-          <End Type="TradeModel.Friend" Role="Friend" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Friend">
-              <PropertyRef Name="User1ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Friend_User2">
-          <End Type="TradeModel.User" Role="User" Multiplicity="1" />
-          <End Type="TradeModel.Friend" Role="Friend" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Friend">
-              <PropertyRef Name="User2ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Table_1_User1">
-          <End Type="TradeModel.User" Role="User" Multiplicity="1" />
-          <End Type="TradeModel.Message" Role="Message" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Message">
-              <PropertyRef Name="User1ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Table_1_User2">
-          <End Type="TradeModel.User" Role="User" Multiplicity="1" />
-          <End Type="TradeModel.Message" Role="Message" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Message">
-              <PropertyRef Name="User2ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+          <NavigationProperty Name="SentFriends" Relationship="TradeModel.FK_Friend_User1" FromRole="User" ToRole="Friend" />
+          <NavigationProperty Name="ReceivedFriends" Relationship="TradeModel.FK_Friend_User2" FromRole="User" ToRole="Friend" />
+          <NavigationProperty Name="SentMessages" Relationship="TradeModel.FK_Table_1_User1" FromRole="User" ToRole="Message" />
+          <NavigationProperty Name="ReceivedMessages" Relationship="TradeModel.FK_Table_1_User2" FromRole="User" ToRole="Message" />
+          </EntityType>
         <Association Name="FK_Notification_User">
           <End Type="TradeModel.User" Role="User" Multiplicity="1" />
           <End Type="TradeModel.Notification" Role="Notification" Multiplicity="*" />
@@ -393,6 +324,77 @@
         </Association>
         <EnumType Name="BaseGenderEnum" UnderlyingType="Byte" a:ExternalTypeName="BitTrade.Common.Enums.BaseGenderEnum" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="BaseRoleEnum" UnderlyingType="Byte" a:ExternalTypeName="BitTrade.Common.Enums.BaseRoleEnum" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromUserID" Type="Int32" Nullable="false" />
+          <Property Name="ToUserID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="FromUser" Relationship="TradeModel.FK_Friend_User1" FromRole="Friend" ToRole="User" />
+          <NavigationProperty Name="ToUser" Relationship="TradeModel.FK_Friend_User2" FromRole="Friend" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromUserID" Type="Int32" Nullable="false" />
+          <Property Name="ToUserID" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="FromUser" Relationship="TradeModel.FK_Table_1_User1" FromRole="Message" ToRole="User" />
+          <NavigationProperty Name="ToUser" Relationship="TradeModel.FK_Table_1_User2" FromRole="Message" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Friend_User1">
+          <End Type="TradeModel.User" Role="User" Multiplicity="1" />
+          <End Type="TradeModel.Friend" Role="Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="FromUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Friend_User2">
+          <End Type="TradeModel.User" Role="User" Multiplicity="1" />
+          <End Type="TradeModel.Friend" Role="Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="ToUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_1_User1">
+          <End Type="TradeModel.User" Role="User" Multiplicity="1" />
+          <End Type="TradeModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="FromUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_1_User2">
+          <End Type="TradeModel.User" Role="User" Multiplicity="1" />
+          <End Type="TradeModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ToUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -406,15 +408,6 @@
                 <ScalarProperty Name="Coin1" ColumnName="Coin" />
                 <ScalarProperty Name="GraphicURL" ColumnName="GraphicURL" />
                 <ScalarProperty Name="PriceByDollar" ColumnName="PriceByDollar" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Friends">
-            <EntityTypeMapping TypeName="TradeModel.Friend">
-              <MappingFragment StoreEntitySet="Friend">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="User1ID" ColumnName="User1ID" />
-                <ScalarProperty Name="User2ID" ColumnName="User2ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -441,17 +434,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Messages">
-            <EntityTypeMapping TypeName="TradeModel.Message">
-              <MappingFragment StoreEntitySet="Message">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="User2ID" ColumnName="User2ID" />
-                <ScalarProperty Name="User1ID" ColumnName="User1ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="TradeModel.User">
               <MappingFragment StoreEntitySet="User">
@@ -465,6 +447,27 @@
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Friends">
+            <EntityTypeMapping TypeName="TradeModel.Friend">
+              <MappingFragment StoreEntitySet="Friend">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ToUserID" ColumnName="ToUserID" />
+                <ScalarProperty Name="FromUserID" ColumnName="FromUserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="TradeModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ToUserID" ColumnName="ToUserID" />
+                <ScalarProperty Name="FromUserID" ColumnName="FromUserID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

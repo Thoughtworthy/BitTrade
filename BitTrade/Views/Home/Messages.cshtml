@@ -1,0 +1,61 @@
+﻿﻿@using BitTrade.Common.Models
+
+@model IEnumerable<ConversationModel>
+
+@{
+    ViewBag.Title = "Messages";
+}
+
+<link href="~/Content/Styles/Messenger.css" rel="stylesheet" />
+<script src="~/Scripts/Messages.js" rel=""></script>
+
+<div class="container bootstrap snippets bootdey" style="margin-top: 20px;">
+    <div class="container bootstrap snippets bootdey">
+        <div class="row">
+            <div class="col-md-3 bg-transparent">
+                <div class="row padding-sm Friends" style="height: 40px;">
+                    <h1>Friends</h1>
+                    <div>
+                        <ul class="friend-list  chat-scroll">
+
+                            @foreach (var conversation in Model)
+                            {
+                                <li class="active bounceInDown">
+
+                                    <div data-id="@conversation.User.ID">
+
+                                        <div class="friend-name">
+                                            <a href="@Url.Action("UserProfile", "Home", new { id = conversation.User.ID })">
+                                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                @conversation.User.FullName
+                                            </a>
+                                        </div>
+                                        <div class="last-message text-muted">Hello, Are you there?</div>
+                                        <small class="time text-muted">Just now</small>
+                                        <small class="chat-alert label label-danger">1</small>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9 bg-transparent">
+                <div class="chat-container">
+                    <ul class="chat chat-scroll">
+                       
+                    </ul>
+                </div>
+                <div class="chat-input">
+                    <div class="input-group">
+                        <input class="form-control border no-shadow no-rounded" placeholder="Type your message here">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success no-rounded" type="button">Send</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

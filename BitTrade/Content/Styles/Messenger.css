@@ -9,14 +9,13 @@
         border-bottom: 1px solid #eee;
     }
 
-        .friend-list li a img {
-            float: left;
+        .friend-list li div img {
             width: 45px;
             height: 45px;
             margin-right: 10px;
         }
 
-        .friend-list li a {
+        .friend-list li div {
             position: relative;
             display: block;
             padding: 10px;
@@ -26,23 +25,23 @@
             -o-transition: all .2s ease;
         }
 
-        .friend-list li.active a {
+        .friend-list li.active div {
             background-color: #1d3d52;
         }
 
-        .friend-list li a .friend-name,
-        .friend-list li a .friend-name:hover {
+        .friend-list li div .friend-name,
+        .friend-list li div .friend-name:hover {
             color: #777;
         }
 
-        .friend-list li a .last-message {
+        .friend-list li div .last-message {
             width: 65%;
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
         }
 
-        .friend-list li a .time {
+        .friend-list li div .time {
             position: absolute;
             top: 10px;
             right: 8px;
@@ -52,7 +51,7 @@ small, .small {
     font-size: 85%;
 }
 
-.friend-list li a .chat-alert {
+.friend-list li div .chat-alert {
     position: absolute;
     right: 8px;
     top: 27px;
@@ -63,7 +62,7 @@ small, .small {
 
 .chat-container {
     display: flex;
-    height: 500px;
+    height: 700px;
     background-color: #f7f7f7;
     padding: 15px;
     border-radius: 5px;

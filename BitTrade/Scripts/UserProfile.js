@@ -30,6 +30,7 @@
         ajaxCall(_editURL, "PUT", updatedProfile, () => {
             userProfileInput.addClass("d-none");
             userProfileData.removeClass("d-none");
+            location.reload();
         });
 
     });

@@ -188,6 +188,7 @@
     <Content Include="Content\Styles\Style.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Pics\.DS_Store" />
+    <Content Include="Scripts\Messages.js" />
     <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\Contacr.js" />
     <Content Include="Scripts\Exchange.js" />
@@ -217,7 +218,8 @@
     <None Include="packages.config" />
     <Content Include="Views\Home\UserLogIn.cshtml" />
     <Content Include="Views\Home\UserRegistration.cshtml" />
-    <Content Include="Views\Home\Messenger.cshtml" />
+    <Content Include="Views\Home\Messages.cshtml" />
+    <Content Include="Views\Home\_Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

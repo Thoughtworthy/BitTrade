@@ -8,8 +8,15 @@ function hideLoadingAnimation() {
     setTimeout(function () {
         $("#loading").addClass("d-none");
         $(".container").removeClass("d-none");
-    }, 500);
+    }, 0);
 }
+
+$(document).on({
+    ajaxStart: showLoadingAnimation,
+    ajaxStop: hideLoadingAnimation
+});
+
+
 //
 function ajaxCall(url, type, data, successCallBack, errorCallBack) {
     $.ajax({

@@ -7,18 +7,18 @@ namespace BitTrade.DAL.Repositories
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
 
-        private readonly TradeEntities _dbContext;
-        public IUserRepository _userRepository { get; set; }
+        private readonly TradeEntities DbContext;
+        public IUserRepository UserRepository { get; set; }
 
         public UnitOfWork(TradeEntities tradeEntities)
         {
-            _dbContext = tradeEntities;
-            _userRepository = new UserRepository(tradeEntities);
+            DbContext = tradeEntities;
+            UserRepository = new UserRepository(tradeEntities);
         }
 
         public void Commit()
         {
-            _dbContext.SaveChanges();
+            DbContext.SaveChanges();
         }
 
         private bool _disposed = false;
@@ -28,7 +28,7 @@ namespace BitTrade.DAL.Repositories
             {
                 if (disposing)
                 {
-                    _dbContext.Dispose();
+                    DbContext.Dispose();
                 }
             }
             _disposed = true;

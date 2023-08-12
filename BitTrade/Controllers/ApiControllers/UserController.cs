@@ -1,4 +1,5 @@
-﻿using BitTrade.Common.Models;
+﻿using BitTrade.BLL.Services;
+using BitTrade.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,16 @@ namespace BitTrade.Controllers.ApiControllers
 {
     public class UserController : ApiController
     {
+        readonly IAccountService _accountService;
+        readonly IUserService _userService;
+        readonly IMessageService _messageService;
+        public UserController(IAccountService accountService, IUserService userService, IMessageService messageService)
+        {
+            _accountService = accountService;
+            _userService = userService;
+            _messageService = messageService;
+        }
+
         public IHttpActionResult Get()
         {
             return Ok(new string[] { "value1", "value2" });
@@ -24,7 +35,6 @@ namespace BitTrade.Controllers.ApiControllers
         }
         public IHttpActionResult Put(UserModel model)
         {
-
             return Ok();
         }
     }

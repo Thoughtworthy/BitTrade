@@ -1,5 +1,7 @@
 ﻿using BitTrade.BLL.Services;
 using BitTrade.Common.Models;
+using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace BitTrade.Controllers
@@ -10,10 +12,12 @@ namespace BitTrade.Controllers
     {
         readonly IAccountService _accountService;
         readonly IUserService _userService;
-        public HomeController(IAccountService accountService, IUserService userService)
+        readonly IMessageService _messageService;
+        public HomeController(IAccountService accountService, IUserService userService, IMessageService messageService)
         {
             _accountService = accountService;
             _userService = userService;
+            _messageService = messageService;
         }
 
         [AllowAnonymous]
@@ -99,21 +103,48 @@ namespace BitTrade.Controllers
 
             return RedirectToAction("UserLogIn");
         }
-        public ActionResult Messenger()
+        [HttpGet]
+        public ActionResult Messages()
         {
-            return View();
+            var model = _messageService.GetConversations(null);
+
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult MessagesPartal()
+        {
+
+
+            return PartialView("_Message", new List<MessageModel>
+            {
+                new MessageModel
+                {
+                    FromUserID = 1,
+                    ToUserID  = 2,
+                    DateSent = DateTime.Now,
+                    IsFromUser = true,
+                },
+                new MessageModel
+                {
+                    FromUserID = 1,
+                    ToUserID  = 2,
+                    DateSent = DateTime.Now.AddDays(30),
+                    IsFromUser = false,
+                },
+
+            });
         }
 
-        public ActionResult Exchange()
-        {
-            return View();
+            public ActionResult Exchange()
+            {
+                return View();
+            }
+
+            public ActionResult Contact()
+            {
+                return View();
+            }
+
+
         }
-
-        public ActionResult Contact()
-        {
-            return View();
-        }
-
-
     }
-}

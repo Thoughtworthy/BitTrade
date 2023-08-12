@@ -123,7 +123,7 @@
                                 <h6 class="mb-0">Ծննդյան օր/ա/տ</h6>
                             </div>
                             <div class="userprofile-data col-sm-9 text-secondary">
-                                @Model.DateOfBirth.ToString("dd/MM/yyyy")
+                                @Model.DateOfBirth.ToString("MM/dd/yyyy")
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 @Html.TextBoxFor(m => m.DateOfBirth, "{0:yyyy-MM-dd}", new { @class = "form-control form-control-lg userprofileinput-data  d-none", type = "date", id = "DateOfBirthInput" })

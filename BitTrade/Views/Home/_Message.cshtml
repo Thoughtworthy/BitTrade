@@ -1,0 +1,23 @@
+﻿@using BitTrade.Common.Models
+
+@model IEnumerable<MessageModel>
+
+@foreach (var conversation in Model)
+{
+    string sender = (conversation.IsFromUser) ? "right" : "left";
+
+    <li class="@sender">
+        <span class="chat-img pull-@sender">
+            <img src="https://bootdey.com/img/Content/user_3.jpg" alt="User Avatar">
+        </span>
+        <div class="chat-body ">
+            <div class="header">
+                <strong class="primary-font">John Doe</strong>
+                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+        </div>
+    </li>
+}

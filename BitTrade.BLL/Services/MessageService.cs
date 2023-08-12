@@ -35,14 +35,15 @@ namespace BitTrade.BLL.Services
         {
             var claimID = ClaimHelper.ID;
 
-            var users = _unitOfWork._userRepository.Get(u => u.SentMessages.Any(m => m.User1ID == claimID) || u.ReciveMessages.Any(m => m.User2ID == claimID), includeProperties: "SentMessages,ReceivedMessages");
+            // And also by eager loading we load last message                                                                                                                                       
+            var users = _unitOfWork.UserRepository.Get(u => u.SentMessages.Any(m => m.ToUserID == claimID) || u.ReceivedMessages.Any(m => m.FromUserID == claimID), includeProperties: "SentMessages,ReceivedMessages");
 
 
             var conversations = new List<ConversationModel>();
             foreach (var user in users)
             {
-                var lastMessage = user.ReciveMessages.Where(m => m.User2ID == claimID)
-                        .Concat(user.SentMessages.Where(m => m.User1ID == claimID))
+                var lastMessage = user.ReceivedMessages.Where(m => m.ToUserID == claimID)
+                        .Concat(user.SentMessages.Where(m => m.FromUserID == claimID))
                         .OrderByDescending(m => m.Date)
                         .FirstOrDefault()
                         .MapTo<MessageModel>();
@@ -58,7 +59,7 @@ namespace BitTrade.BLL.Services
                     LastMessage = lastMessage
                 });
             }
-            conversations = conversations.OrderByDescending(c => c.LastMessage.DateSent).ToList();
+            //conversations = conversations.OrderByDescending(c => c.LastMessage.DateSent).ToList();
 
             if (userID.HasValue && userID.Value > 0)
             {
@@ -69,7 +70,7 @@ namespace BitTrade.BLL.Services
                 }
                 else
                 {
-                    var user = _unitOfWork._userRepository.GetByID(userID.Value);
+                    var user = _unitOfWork.UserRepository.GetByID(userID.Value);
                     if (user != null)
                     {
                         conversations.Insert(0, new ConversationModel

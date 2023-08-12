@@ -23,7 +23,7 @@ namespace BitTrade.BLL.Services
         public LoginResultModel LogIn(LoginModel model)
         {
 
-            var user = _unitOfWork._userRepository
+            var user = _unitOfWork.UserRepository
                 .Get(u => u.Email == model.Email).FirstOrDefault();
 
             if (user == null || user.IsActive == false)
@@ -61,7 +61,7 @@ namespace BitTrade.BLL.Services
         {
 
 
-            if (_unitOfWork._userRepository.Any(u => u.Email == model.Email))
+            if (_unitOfWork.UserRepository.Any(u => u.Email == model.Email))
             {
                 return new RegisterResultModel
                 {
@@ -87,7 +87,7 @@ namespace BitTrade.BLL.Services
                 Salt = salt,
             };
 
-            _unitOfWork._userRepository.Insert(user);
+            _unitOfWork.UserRepository.Insert(user);
             _unitOfWork.Commit();
 
             return new RegisterResultModel

@@ -15,10 +15,11 @@ namespace BitTrade.DAL
     public partial class Friend
     {
         public int ID { get; set; }
-        public int User1ID { get; set; }
-        public int User2ID { get; set; }
+        public int FromUserID { get; set; }
+        public int ToUserID { get; set; }
+        public System.DateTime Date { get; set; }
     
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
+        public virtual User FromUser { get; set; }
+        public virtual User ToUser { get; set; }
     }
 }

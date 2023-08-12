@@ -9,6 +9,6 @@ namespace BitTrade.DAL.Interfaces
     public interface IUnitOfWork
     {
         void Commit();
-        IUserRepository _userRepository { get; set; }
+        IUserRepository UserRepository { get; set; }
     }
 }
