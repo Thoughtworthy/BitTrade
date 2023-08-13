@@ -4,7 +4,12 @@
     let cencelEdit = $("#cenceledit")
     let userProfileData = $(".userprofile-data");
     let userProfileInput = $(".userprofileinput-data");
+    let messege = $("#message");
 
+    messege.click(function () {
+        let Id = $("#ID").val();
+        location.href = `${_messageURL}?${Id}`;
+    });
 
     edit.click(() => {
         userProfileData.addClass("d-none");

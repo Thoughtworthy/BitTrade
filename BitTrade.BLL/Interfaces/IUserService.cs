@@ -10,6 +10,6 @@ namespace BitTrade.BLL.Services
     public interface IUserService
     {
         UserModel GetUserByID(int id);
-        void Updaet(UserModel model);
+        void Update(UserModel model);
     }
 }

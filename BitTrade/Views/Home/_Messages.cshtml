@@ -1,6 +1,12 @@
 ﻿@using BitTrade.Common.Models
+@using BitTrade.Common.Helpers
 
 @model IEnumerable<MessageModel>
+
+@{
+
+    var firstName = ClaimHelper.GetClaim("FirstName");
+}
 
 @foreach (var conversation in Model)
 {
@@ -10,13 +16,13 @@
         <span class="chat-img pull-@sender">
             <img src="https://bootdey.com/img/Content/user_3.jpg" alt="User Avatar">
         </span>
-        <div class="chat-body ">
+        <div class="chat-body">
             <div class="header">
-                <strong class="primary-font">John Doe</strong>
-                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
+                <strong class="primary-font">*</strong>
+                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> @((DateTime.Now - conversation.DateSent).Minutes)minutes ago  </small>
             </div>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                @conversation.Text
             </p>
         </div>
     </li>

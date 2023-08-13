@@ -1,14 +1,14 @@
 ﻿// Ajax call animation
 function showLoadingAnimation() {
-    $("#loading").removeClass("d-none");
-    $(".container").addClass("d-none");
+    //$("#loading").removeClass("d-none");
+    //$(".container").addClass("d-none");
 }
 
 function hideLoadingAnimation() {
-    setTimeout(function () {
-        $("#loading").addClass("d-none");
-        $(".container").removeClass("d-none");
-    }, 0);
+    //setTimeout(function () {
+    //    $("#loading").addClass("d-none");
+    //    $(".container").removeClass("d-none");
+    //}, 0);
 }
 
 $(document).on({

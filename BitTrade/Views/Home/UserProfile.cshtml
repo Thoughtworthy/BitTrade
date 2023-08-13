@@ -7,12 +7,13 @@
     ViewBag.Title = "Profile";
 
     var imgUrl = Model.ImageURL;
-
+    var modelID = Model.ID.ToString();
     var claimID = ClaimHelper.GetClaim("ID");
 }
 <script src="~/Scripts/UserProfile.js"></script>
 <script>
     let _editURL = "@Url.RouteUrl("DefaultApi", new { httpRoute = "", controller = "User" })";
+    let _messageURL = "@Url.Action("Messages","Home")";
 </script>
 
 <div class="container">
@@ -40,8 +41,12 @@
 
                                 <h4>@Model.FullName</h4>
                                 <p class="text-secondary mb-1">Թրեյդեր</p>
-                                <button class="btn btn-primary">Հետևել</button>
-                                <button class="btn btn-outline-primary">Հաղորդագրություն</button>
+                                @if (modelID != claimID)
+                                {
+                                    <button class="btn btn-primary">Հետևել</button>
+                                    <button id ="message" class="btn btn-outline-primary">Հաղորդագրություն</button>
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -153,16 +158,19 @@
                             </div>
                         </div>
                         <hr>
+                        @if (modelID == claimID)
+                        {
+                            <div class="row">
+                                <div class="userprofile-data col-sm-12">
+                                    <button class="btn btn-primary" id="edit">Edit</button>
+                                </div>
+                                <div class="col-sm-12">
+                                    <button class="btn btn-primary userprofileinput-data d-none" id="savechanges">Save Changes</button>
+                                    <button class="btn btn-secondary userprofileinput-data d-none" id="cenceledit">Cencel</button>
+                                </div>
+                            </div>
+                        }
 
-                        <div class="row">
-                            <div class="userprofile-data col-sm-12">
-                                <button class="btn btn-primary" id="edit">Edit</button>
-                            </div>
-                            <div class="col-sm-12">
-                                <button class="btn btn-primary userprofileinput-data d-none" id="savechanges">Save Changes</button>
-                                <button class="btn btn-secondary userprofileinput-data d-none" id="cenceledit">Cencel</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

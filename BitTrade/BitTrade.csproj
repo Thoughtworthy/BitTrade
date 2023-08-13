@@ -156,6 +156,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ApiControllers\ApiBaseController.cs" />
     <Compile Include="Controllers\ApiControllers\MessageController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -164,6 +165,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\JsonNetResult.cs" />
+    <Compile Include="Models\ResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -219,7 +221,7 @@
     <Content Include="Views\Home\UserLogIn.cshtml" />
     <Content Include="Views\Home\UserRegistration.cshtml" />
     <Content Include="Views\Home\Messages.cshtml" />
-    <Content Include="Views\Home\_Message.cshtml" />
+    <Content Include="Views\Home\_Messages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -10,5 +10,6 @@ namespace BitTrade.DAL.Interfaces
     {
         void Commit();
         IUserRepository UserRepository { get; set; }
+        IMessageRepository MessageRepository { get; set; }
     }
 }

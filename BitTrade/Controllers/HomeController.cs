@@ -104,47 +104,35 @@ namespace BitTrade.Controllers
             return RedirectToAction("UserLogIn");
         }
         [HttpGet]
-        public ActionResult Messages()
+        public ActionResult Messages(int? id)
         {
-            var model = _messageService.GetConversations(null);
+            var model = _messageService.GetConversations(id);
 
             return View(model);
         }
+        
+
         [HttpGet]
-        public ActionResult MessagesPartal()
+        public ActionResult MessagesPartial(int id)
         {
-
-
-            return PartialView("_Message", new List<MessageModel>
+            var model = _messageService.GetByUserID(id);
+            if(model == null)
             {
-                new MessageModel
-                {
-                    FromUserID = 1,
-                    ToUserID  = 2,
-                    DateSent = DateTime.Now,
-                    IsFromUser = true,
-                },
-                new MessageModel
-                {
-                    FromUserID = 1,
-                    ToUserID  = 2,
-                    DateSent = DateTime.Now.AddDays(30),
-                    IsFromUser = false,
-                },
-
-            });
+                return PartialView("_Messages", new MessageModel());
+            }
+            return PartialView("_Messages", model);
         }
 
-            public ActionResult Exchange()
-            {
-                return View();
-            }
-
-            public ActionResult Contact()
-            {
-                return View();
-            }
-
-
+        public ActionResult Exchange()
+        {
+            return View();
         }
+
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+
     }
+}

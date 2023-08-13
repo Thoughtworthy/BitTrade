@@ -70,8 +70,12 @@ small, .small {
     flex-direction: column;
     justify-content: space-between;
 }
-.chat-scroll {
-    max-height: calc(100% - 40px); 
+.div-scroll-chat {
+    max-height: 650px; 
+    overflow-y: auto;
+}
+.div-scroll-friend {
+    max-height: 600px;
     overflow-y: auto;
 }
 
