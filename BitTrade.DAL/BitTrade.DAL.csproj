@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Interfaces\IMessageRepository.cs" />
+    <Compile Include="Interfaces\IFriendRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Message.cs">
@@ -73,6 +74,7 @@
     <Compile Include="Purchase.cs">
       <DependentUpon>TradeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\FriendRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UnitOfWorkcs.cs" />
     <Compile Include="Repositories\MessageRepository.cs" />

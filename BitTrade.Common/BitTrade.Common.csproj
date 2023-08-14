@@ -46,7 +46,10 @@
   <ItemGroup>
     <Compile Include="Enums\BaseRoleEnum.cs" />
     <Compile Include="Enums\BaseGenderEnum.cs" />
+    <Compile Include="Helpers\MessageTimeHelper.cs" />
     <Compile Include="Helpers\ClaimHelper.cs" />
+    <Compile Include="Models\FriendModel.cs" />
+    <Compile Include="Models\FriendShipModel.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ConversationModel.cs" />

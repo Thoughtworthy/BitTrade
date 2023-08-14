@@ -62,14 +62,20 @@ small, .small {
 
 .chat-container {
     display: flex;
-    height: 700px;
+    height: 650px;
     background-color: #f7f7f7;
     padding: 15px;
     border-radius: 5px;
     background: #0507229c;
     flex-direction: column;
     justify-content: space-between;
+    display: flex;
 }
+.chat-default {
+    justify-content: center;
+    align-items: center;
+}
+
 .div-scroll-chat {
     max-height: 650px; 
     overflow-y: auto;
@@ -119,10 +125,30 @@ img {
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 
-    .chat li .chat-body .header {
-        padding-bottom: 5px;
-        border-bottom: 1px solid #f1f5fc;
-    }
+
+
+
+.friend-list li .profile-link:hover {
+    color: green !important;
+}
+
+/* Apply hover effect to list items in the friend list */
+.friend-prof:hover {
+    cursor: pointer;
+    border: solid 3px #ffbb2f !important;
+}
+
+.selected {
+    border: solid 3px #ffbb2f !important;
+}
+
+
+
+
+.chat li .chat-body .header {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #f1f5fc;
+}
 
     .chat li .chat-body p {
         margin: 0;

@@ -10,6 +10,7 @@ namespace BitTrade.BLL.Services
     public interface IUserService
     {
         UserModel GetUserByID(int id);
+        IEnumerable<FriendShipModel> GetUsersContains(string term);
         void Update(UserModel model);
     }
 }

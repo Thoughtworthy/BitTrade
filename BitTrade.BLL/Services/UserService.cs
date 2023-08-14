@@ -4,6 +4,10 @@ using BitTrade.Common.Models;
 using BitTrade.DAL;
 using BitTrade.DAL.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Remoting.Messaging;
+using System.Security.Claims;
 
 namespace BitTrade.BLL.Services
 {
@@ -22,6 +26,32 @@ namespace BitTrade.BLL.Services
 
             return user.MapTo<UserModel>();
 
+        }
+
+        public IEnumerable<FriendShipModel> GetUsersContains(string term)
+        {
+            var users = _unitOfWork.UserRepository.Get(u => u.FirstName.Contains(term) || u.LastName.Contains(term) && u.ID != ClaimHelper.ID);
+            var userModels = new List<FriendShipModel>();
+
+            foreach (var user in users)
+            {
+                var friendRecord = _unitOfWork.FriendRepository
+                                   .Get(u => u.FromUserID == user.ID || u.ToUserID == user.ID)
+                                   .FirstOrDefault();
+
+                bool? isFriend = friendRecord?.IsAccepted;
+                var userModel = new FriendShipModel
+                {
+                    Id = user.ID,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    IsFriend = isFriend
+
+                };
+                userModels.Add(userModel);
+            }
+
+            return userModels;
         }
 
         public void Update(UserModel model)

@@ -173,6 +173,7 @@
     <Content Include="Content\Pics\BTN-coin.png" />
     <Content Include="Content\Pics\P2P.png" />
     <Content Include="Content\Pics\SlidePic.png" />
+    <Content Include="Content\Styles\Exchange.css" />
     <Content Include="Content\Styles\Index.css" />
     <Content Include="Content\Styles\Messenger.css" />
     <Content Include="Content\Styles\UserRegistration.css" />
@@ -190,6 +191,7 @@
     <Content Include="Content\Styles\Style.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Pics\.DS_Store" />
+    <Content Include="Scripts\Search.js" />
     <Content Include="Scripts\Messages.js" />
     <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\Contacr.js" />
@@ -207,7 +209,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\UserProfile.cshtml" />
     <Content Include="Views\Home\Exchange.cshtml" />
@@ -222,6 +224,7 @@
     <Content Include="Views\Home\UserRegistration.cshtml" />
     <Content Include="Views\Home\Messages.cshtml" />
     <Content Include="Views\Home\_Messages.cshtml" />
+    <Content Include="Views\Home\_Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

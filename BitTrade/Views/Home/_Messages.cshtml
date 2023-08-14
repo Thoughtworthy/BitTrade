@@ -19,7 +19,7 @@
         <div class="chat-body">
             <div class="header">
                 <strong class="primary-font">*</strong>
-                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> @((DateTime.Now - conversation.DateSent).Minutes)minutes ago  </small>
+                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i>@MessageTimeHelper.FormatTimeDifference(conversation.DateSent)</small>
             </div>
             <p>
                 @conversation.Text
@@ -27,3 +27,5 @@
         </div>
     </li>
 }
+
+

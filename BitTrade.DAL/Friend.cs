@@ -18,6 +18,7 @@ namespace BitTrade.DAL
         public int FromUserID { get; set; }
         public int ToUserID { get; set; }
         public System.DateTime Date { get; set; }
+        public bool IsAccepted { get; set; }
     
         public virtual User FromUser { get; set; }
         public virtual User ToUser { get; set; }

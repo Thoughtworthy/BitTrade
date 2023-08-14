@@ -18,7 +18,7 @@ namespace BitTrade.DAL
         public int FromUserID { get; set; }
         public int ToUserID { get; set; }
         public string Text { get; set; }
-        public System.DateTime Date { get; set; }
+        public System.DateTime DateSent { get; set; }
     
         public virtual User FromUser { get; set; }
         public virtual User ToUser { get; set; }

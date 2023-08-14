@@ -8,7 +8,7 @@
 
     messege.click(function () {
         let Id = $("#ID").val();
-        location.href = `${_messageURL}?${Id}`;
+        location.href = `${_messageURL}/${Id}`;
     });
 
     edit.click(() => {

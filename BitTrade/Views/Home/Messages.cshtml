@@ -1,9 +1,11 @@
 ﻿﻿@using BitTrade.Common.Models
+@using BitTrade.Common.Helpers
 
 @model IEnumerable<ConversationModel>
 
 @{
     ViewBag.Title = "Messages";
+    var id = ClaimHelper.GetClaim("ID");
 }
 
 <link href="~/Content/Styles/Messenger.css" rel="stylesheet" />
@@ -18,7 +20,7 @@
     <div class="container bootstrap snippets bootdey">
         <div class="row">
             <div class="col-md-3 bg-transparent">
-                <div class="row padding-sm Friends" style="height: 40px;">
+                <div class="row padding-sm friends" style="height: 40px;">
                     <h1>Friends</h1>
                     <div>
                         <ul class="friend-list div-scroll-friend">
@@ -26,17 +28,20 @@
                             @foreach (var conversation in Model)
                             {
                                 <li class="active bounceInDown">
-                                    <div data-id="@conversation.User.ID">
+                                    <div class="friend-prof" data-id="@conversation.User.ID" isSelected="@conversation.IsSelected.ToString()" >
                                         <div class="friend-name">
-                                            <a href="@Url.Action("UserProfile", "Home", new { id = conversation.User.ID })" class="text-white">
-                                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                            <a href="@Url.Action("UserProfile", "Home", new { id = conversation.User.ID })" class="text-white profile-link">
+                                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="pic" class="img-circle">
                                                 @conversation.User.FullName
                                             </a>
                                         </div>
-                                        <div class="last-message text-muted">@conversation.LastMessage.Text</div>
+                                        <div class="last-message text-muted">
+                                            <span class="text-white">@(conversation.LastMessage.FromUserID.ToString() == id ? "Դուք" : "Նա") :</span>
+                                            @conversation.LastMessage.Text
+                                        </div>
 
-                                        <small class="time text-muted">@((DateTime.Now - conversation.LastMessage.DateSent).Minutes) minutes ago  </small>
-                                        <small class="chat-alert label label-danger">0</small>
+                                        <small class="time text-muted">@MessageTimeHelper.FormatTimeDifference(conversation.LastMessage.DateSent)</small>
+                                        <small class="chat-alert label label-danger">*</small>
                                     </div>
                                 </li>
                             }
@@ -47,8 +52,9 @@
             </div>
 
             <div class="col-md-9 bg-transparent">
-                <div class="chat-container">
+                <div class="chat-container chat-default">
                     <ul class="chat div-scroll-chat">
+                        Tap On Conversation to countinoue ... 
                     </ul>
                 </div>
                 <div class="chat-input">

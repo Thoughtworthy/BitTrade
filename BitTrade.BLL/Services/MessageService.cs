@@ -31,7 +31,7 @@ namespace BitTrade.BLL.Services
                 FromUserID = claimID,
                 ToUserID = model.ToUserID,
                 Text = model.Text,
-                Date = DateTime.UtcNow
+                DateSent = DateTime.UtcNow
             };
 
             _unitOfWork.MessageRepository.Insert(message);
@@ -72,7 +72,7 @@ namespace BitTrade.BLL.Services
             {
                 var lastMessage = user.ReceivedMessages.Where(m => m.FromUserID == claimID)
                         .Concat(user.SentMessages.Where(m => m.ToUserID == claimID))
-                        .OrderByDescending(m => m.Date)
+                        .OrderByDescending(m => m.DateSent)
                         .FirstOrDefault()
                         .MapTo<MessageModel>();
 

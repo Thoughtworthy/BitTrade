@@ -75,13 +75,22 @@
                                     </li>
                                 }
 
+                                using (Html.BeginForm("Search", "Home"))
+                                {
+                                    <li class="d_none">
+
+                                        <button type="submit" style="border: none; background: none; cursor: pointer; padding:3px">
+                                            <i class="fa fa-search" style="color: #f7c137;" aria-hidden="true"></i>
+                                        </button>
+                                    </li>
+                                }
 
                                 using (Html.BeginForm("Messages", "Home", FormMethod.Get))
                                 {
                                     <li class="d_none">
 
                                         <button type="submit" style="border: none; background: none; cursor: pointer; padding:3px">
-                                            <i class="fa-envelope" style="color: #f7c137;" aria-hidden="true"></i>
+                                            <i class="fa fa-envelope" style="color: #f7c137;" aria-hidden="true"></i>
                                         </button>
                                     </li>
                                 }

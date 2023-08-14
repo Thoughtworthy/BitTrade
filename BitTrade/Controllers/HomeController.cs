@@ -1,7 +1,10 @@
 ﻿using BitTrade.BLL.Services;
 using BitTrade.Common.Models;
+using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
 
 namespace BitTrade.Controllers
@@ -110,13 +113,13 @@ namespace BitTrade.Controllers
 
             return View(model);
         }
-        
+
 
         [HttpGet]
         public ActionResult MessagesPartial(int id)
         {
             var model = _messageService.GetByUserID(id);
-            if(model == null)
+            if (model == null)
             {
                 return PartialView("_Messages", new MessageModel());
             }
@@ -128,9 +131,16 @@ namespace BitTrade.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Search()
         {
             return View();
+        }
+        public ActionResult SearchPartial(string data)
+        {
+            string decodedData = HttpUtility.UrlDecode(data);
+            FriendShipModel[] models = JsonConvert.DeserializeObject<FriendShipModel[]>(decodedData);
+
+            return PartialView("_Search", models);
         }
 
 

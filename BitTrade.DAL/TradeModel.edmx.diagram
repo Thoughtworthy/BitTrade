@@ -13,9 +13,9 @@
         <AssociationConnector Association="TradeModel.FK_Notification_User" />
         <AssociationConnector Association="TradeModel.FK_Purchase_User" />
         <EntityTypeShape EntityType="TradeModel.Friend" Width="1.5" PointX="5" PointY="0.875" />
-        <EntityTypeShape EntityType="TradeModel.Message" Width="1.5" PointX="5" PointY="3.875" />
         <AssociationConnector Association="TradeModel.FK_Friend_User1" />
         <AssociationConnector Association="TradeModel.FK_Friend_User2" />
+        <EntityTypeShape EntityType="TradeModel.Message" Width="1.5" PointX="4.125" PointY="4.25" />
         <AssociationConnector Association="TradeModel.FK_Table_1_User1" />
         <AssociationConnector Association="TradeModel.FK_Table_1_User2" />
         </Diagram>

@@ -10,12 +10,15 @@ namespace BitTrade.DAL.Repositories
         private readonly TradeEntities DbContext;
         public IUserRepository UserRepository { get; set; }
         public IMessageRepository MessageRepository { get; set; }
+        public IFriendRepository FriendRepository { get; set; }
+
 
         public UnitOfWork(TradeEntities tradeEntities)
         {
             DbContext = tradeEntities;
             UserRepository = new UserRepository(tradeEntities);
             MessageRepository = new MessageRepository(tradeEntities);
+            FriendRepository = new FriendRepository(tradeEntities);
         }
 
         public void Commit()

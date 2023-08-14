@@ -1,12 +1,7 @@
 ﻿using BitTrade.BLL.Services;
 using BitTrade.Common.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using TradePlatform.Models;
 
 namespace BitTrade.Controllers.ApiControllers
 {
@@ -22,13 +17,20 @@ namespace BitTrade.Controllers.ApiControllers
             _messageService = messageService;
         }
 
-        public IHttpActionResult Get(int id)
+        //public IHttpActionResult Get(int id)
+        //{
+        //    var user = _userService.GetUserByID(id);
+        //    return Ok(user);
+        //}
+
+  
+        public IHttpActionResult Get(string term)
         {
-            var user = _userService.GetUserByID(id);
-            //var jsonOb = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+            var user = _userService.GetUsersContains(term);
 
             return Ok(user);
         }
+
         public IHttpActionResult Post([FromBody] string value)
         {
             return Ok(value);

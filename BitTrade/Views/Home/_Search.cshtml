@@ -1,0 +1,39 @@
+﻿@using BitTrade.Common.Models
+@model IEnumerable<FriendShipModel>
+
+<script src="~/Scripts/SearchPartial.js"></script>
+
+<script>
+    let _messageURL = "@Url.Action("Messages","Home")";
+</script>
+
+
+@foreach (var user in Model)
+{
+    if (user.Id != BitTrade.Common.Helpers.ClaimHelper.ID)
+    {
+        <div style="margin-top: 15px;margin-right:20px;margin-left:30px; width:400px; display:inline-block">
+            <div class="friend-name">
+                <a href="@Url.Action("UserProfile", "Home", new { id = user.Id })" class="text-white profile-link">
+                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="pic" class="img-circle">
+                    @user.FullName
+                </a>
+                <div class="button-container" data-id="@user.Id">
+                    @if (user.IsFriend == null)
+                    {
+                        <button class="add-friend btn btn-primary mr-1">Add friend</button>
+                    }
+                    else if (user.IsFriend == true)
+                    {
+                        <button class="remove-from-frinds btn btn-primary mr-1">Remove from friends</button>
+                    }
+                    else
+                    {
+                        <button class="cencel-request btn btn-primary mr-1">Cancel request</button>
+                    }
+                    <button class="write-message btn btn-primary">Write Message</button>
+                </div>
+            </div>
+        </div>
+    }
+}
