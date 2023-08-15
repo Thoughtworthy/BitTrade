@@ -48,6 +48,8 @@
     <Compile Include="Enums\BaseGenderEnum.cs" />
     <Compile Include="Helpers\MessageTimeHelper.cs" />
     <Compile Include="Helpers\ClaimHelper.cs" />
+    <Compile Include="Models\WalletModel.cs" />
+    <Compile Include="Models\CurrencyModel.cs" />
     <Compile Include="Models\FriendModel.cs" />
     <Compile Include="Models\FriendShipModel.cs" />
     <Compile Include="Models\AccountModel.cs" />

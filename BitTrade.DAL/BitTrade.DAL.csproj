@@ -53,12 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Coin.cs">
-      <DependentUpon>TradeModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Friend.cs">
       <DependentUpon>TradeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IWalletRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Interfaces\IMessageRepository.cs" />
     <Compile Include="Interfaces\IFriendRepository.cs" />
@@ -71,10 +69,8 @@
       <DependentUpon>TradeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Purchase.cs">
-      <DependentUpon>TradeModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Repositories\FriendRepository.cs" />
+    <Compile Include="Repositories\WalletRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UnitOfWorkcs.cs" />
     <Compile Include="Repositories\MessageRepository.cs" />
@@ -95,6 +91,9 @@
     </Compile>
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="User.cs">
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Wallet.cs">
       <DependentUpon>TradeModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

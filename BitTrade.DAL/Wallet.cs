@@ -12,17 +12,13 @@ namespace BitTrade.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Purchase
+    public partial class Wallet
     {
         public int ID { get; set; }
         public int UserID { get; set; }
-        public int CoinID { get; set; }
-        public decimal CoinCount { get; set; }
+        public int CoinCount { get; set; }
         public string CurrencyType { get; set; }
-        public decimal Price { get; set; }
-        public System.DateTime DateOfPurcahse { get; set; }
     
-        public virtual Coin Coin { get; set; }
         public virtual User User { get; set; }
     }
 }

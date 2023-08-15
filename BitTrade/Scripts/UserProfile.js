@@ -5,6 +5,12 @@
     let userProfileData = $(".userprofile-data");
     let userProfileInput = $(".userprofileinput-data");
     let messege = $("#message");
+    let wallet = $(".own-wallet");
+    let userID = $("div.own-wallet[user-id]").attr("user-id");
+
+    console.log(userID);
+
+    wallet.load(`${_partialWalletURL}/${userID}`);
 
     messege.click(function () {
         let Id = $("#ID").val();

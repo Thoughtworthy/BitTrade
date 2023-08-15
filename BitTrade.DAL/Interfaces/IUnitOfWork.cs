@@ -12,5 +12,6 @@ namespace BitTrade.DAL.Interfaces
         IUserRepository UserRepository { get; set; }
         IMessageRepository MessageRepository { get; set; }
         IFriendRepository FriendRepository { get; set; }
+        IWalletRepository WalletRepository { get; set; }
     }
 }

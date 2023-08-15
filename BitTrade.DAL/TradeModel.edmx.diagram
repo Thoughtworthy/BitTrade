@@ -5,19 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cc8500a2b8ed4ffda51eab33e2ecff5b" Name="Diagram1" ZoomLevel="113">
-        <EntityTypeShape EntityType="TradeModel.Coin" Width="2.5" PointX="8.875" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TradeModel.Notification" Width="1.5" PointX="7.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TradeModel.Purchase" Width="1.5" PointX="10.75" PointY="4" IsExpanded="true" />
-        <AssociationConnector Association="TradeModel.FK_Purchase_Coin" />
         <EntityTypeShape EntityType="TradeModel.User" Width="1.5" PointX="1.625" PointY="1.125" />
         <AssociationConnector Association="TradeModel.FK_Notification_User" />
-        <AssociationConnector Association="TradeModel.FK_Purchase_User" />
         <EntityTypeShape EntityType="TradeModel.Friend" Width="1.5" PointX="5" PointY="0.875" />
         <AssociationConnector Association="TradeModel.FK_Friend_User1" />
         <AssociationConnector Association="TradeModel.FK_Friend_User2" />
         <EntityTypeShape EntityType="TradeModel.Message" Width="1.5" PointX="4.125" PointY="4.25" />
         <AssociationConnector Association="TradeModel.FK_Table_1_User1" />
         <AssociationConnector Association="TradeModel.FK_Table_1_User2" />
+        <EntityTypeShape EntityType="TradeModel.Wallet" Width="1.5" PointX="8.75" PointY="1" />
+        <AssociationConnector Association="TradeModel.FK_Wallet_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

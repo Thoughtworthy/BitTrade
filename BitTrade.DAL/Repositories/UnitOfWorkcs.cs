@@ -11,7 +11,7 @@ namespace BitTrade.DAL.Repositories
         public IUserRepository UserRepository { get; set; }
         public IMessageRepository MessageRepository { get; set; }
         public IFriendRepository FriendRepository { get; set; }
-
+        public IWalletRepository WalletRepository { get; set; }
 
         public UnitOfWork(TradeEntities tradeEntities)
         {
@@ -19,6 +19,7 @@ namespace BitTrade.DAL.Repositories
             UserRepository = new UserRepository(tradeEntities);
             MessageRepository = new MessageRepository(tradeEntities);
             FriendRepository = new FriendRepository(tradeEntities);
+            WalletRepository = new WalletRepository(tradeEntities);
         }
 
         public void Commit()

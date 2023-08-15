@@ -2,6 +2,7 @@
 using BitTrade.Common.Models;
 using BitTrade.DAL;
 using BitTrade.DAL.Interfaces;
+using BitTrade.DAL.Repositories;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
@@ -87,7 +88,16 @@ namespace BitTrade.BLL.Services
                 Salt = salt,
             };
 
+            Wallet wallet = new Wallet
+            {
+                CurrencyType = "USD",
+                UserID = user.ID,
+                CoinCount = 10000,
+            };
+
             _unitOfWork.UserRepository.Insert(user);
+            _unitOfWork.WalletRepository.Insert(wallet);
+
             _unitOfWork.Commit();
 
             return new RegisterResultModel

@@ -31,6 +31,7 @@ namespace BitTrade.BLL.Configuration
                 cfg.CreateMap<RegisterModel, User>();
                 cfg.CreateMap<UserModel, User>();
                 cfg.CreateMap<Message, MessageModel>();
+                cfg.CreateMap<Wallet, WalletModel>();
             });
 
             _mapper = new Mapper(config);

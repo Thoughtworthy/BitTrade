@@ -18,11 +18,11 @@ namespace BitTrade.DAL
         public User()
         {
             this.Notifications = new HashSet<Notification>();
-            this.Purchases = new HashSet<Purchase>();
             this.SentFriends = new HashSet<Friend>();
             this.ReceivedFriends = new HashSet<Friend>();
             this.SentMessages = new HashSet<Message>();
             this.ReceivedMessages = new HashSet<Message>();
+            this.Wallets = new HashSet<Wallet>();
         }
     
         public int ID { get; set; }
@@ -40,8 +40,6 @@ namespace BitTrade.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Notification> Notifications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Purchase> Purchases { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Friend> SentFriends { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Friend> ReceivedFriends { get; set; }
@@ -49,5 +47,7 @@ namespace BitTrade.DAL
         public virtual ICollection<Message> SentMessages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> ReceivedMessages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Wallet> Wallets { get; set; }
     }
 }

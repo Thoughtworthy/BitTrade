@@ -26,41 +26,41 @@
     });
 
     txtMessage.keypress(function (event) {
-        if (event.keyCode === 13) { 
-            event.preventDefault(); 
-            sendButton.click(); 
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            sendButton.click();
         }
     });
 
-        function sendMessage() {
-            if (selectedUserID == 0) {
-                alert("Please select a conversation.");
-                return;
-            }
+    function sendMessage() {
+        if (selectedUserID == 0) {
+            alert("Please select a conversation.");
+            return;
+        }
 
-            let text = txtMessage.val();
-            if (!text) {
-                return;
-            }
+        let text = txtMessage.val();
+        if (!text) {
+            return;
+        }
 
-            ajaxCall(_messageURL, "POST", {
-                ToUserID: selectedUserID,
-                Text: text
-            }, function () {
-                chatDiv.load(`${_messagesPartialURL}/${selectedUserID}`, function () {
-                    scrollToBottom(chatDiv);
-                    txtMessage.val('');
-                });
+        ajaxCall(_messageURL, "POST", {
+            ToUserID: selectedUserID,
+            Text: text
+        }, function () {
+            chatDiv.load(`${_messagesPartialURL}/${selectedUserID}`, function () {
+                scrollToBottom(chatDiv);
+                txtMessage.val('');
             });
-        }
+        });
+    }
 
 
 
 
-        function scrollToBottom(element) {
-            element.scrollTop(element.prop("scrollHeight"));
-        }
+    function scrollToBottom(element) {
+        element.scrollTop(element.prop("scrollHeight"));
+    }
 
-        $(`div[isSelected="True"]`).click();
+    $(`div[isSelected="True"]`).click();
 
-    });
+});

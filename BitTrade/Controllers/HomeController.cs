@@ -4,6 +4,7 @@ using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
@@ -16,11 +17,13 @@ namespace BitTrade.Controllers
         readonly IAccountService _accountService;
         readonly IUserService _userService;
         readonly IMessageService _messageService;
-        public HomeController(IAccountService accountService, IUserService userService, IMessageService messageService)
+        readonly IWalletService _walletService;
+        public HomeController(IAccountService accountService, IUserService userService, IMessageService messageService, IWalletService walletService)
         {
             _accountService = accountService;
             _userService = userService;
             _messageService = messageService;
+            _walletService = walletService;
         }
 
         [AllowAnonymous]
@@ -40,6 +43,14 @@ namespace BitTrade.Controllers
                 }
             }
             return View(new UserModel());
+        }
+
+        public ActionResult WalletPartial(int id)
+        {
+
+            var models = _walletService.GetWalletByID(id);
+
+            return PartialView("_Wallet", models);
         }
 
         [HttpGet]
@@ -126,9 +137,17 @@ namespace BitTrade.Controllers
             return PartialView("_Messages", model);
         }
 
-        public ActionResult Exchange()
+        public ActionResult Exchanges()
         {
             return View();
+        }
+
+        public ActionResult ExchangesPartial(string data)
+        {
+            string decodedData = HttpUtility.UrlDecode(data);
+            IEnumerable<CurrencyModel> models = JsonConvert.DeserializeObject<CurrencyModel[]>(decodedData);
+
+            return PartialView("_Exchanges", models);
         }
 
         public ActionResult Search()
@@ -138,7 +157,7 @@ namespace BitTrade.Controllers
         public ActionResult SearchPartial(string data)
         {
             string decodedData = HttpUtility.UrlDecode(data);
-            FriendShipModel[] models = JsonConvert.DeserializeObject<FriendShipModel[]>(decodedData);
+            IEnumerable<FriendShipModel> models = JsonConvert.DeserializeObject<FriendShipModel[]>(decodedData);
 
             return PartialView("_Search", models);
         }
