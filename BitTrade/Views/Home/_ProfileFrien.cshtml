@@ -1,0 +1,31 @@
+﻿@using BitTrade.Common.Models
+@using BitTrade.Common.Helpers
+
+@model IEnumerable<MessageModel>
+
+@{
+
+    var firstName = ClaimHelper.GetClaim("FirstName");
+}
+
+@foreach (var conversation in Model)
+{
+    string sender = (conversation.IsFromUser) ? "right" : "left";
+
+    <li class="@sender">
+        <span class="chat-img pull-@sender">
+            <img src="https://bootdey.com/img/Content/user_3.jpg" alt="User Avatar">
+        </span>
+        <div class="chat-body">
+            <div class="header">
+                <strong class="primary-font">*</strong>
+                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i>@MessageTimeHelper.FormatTimeDifference(conversation.DateSent)</small>
+            </div>
+            <p>
+                @conversation.Text
+            </p>
+        </div>
+    </li>
+}
+
+

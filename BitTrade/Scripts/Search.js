@@ -5,9 +5,10 @@
 
     searchButton.click(() => {
 
-        ajaxCall(`http://bitcypo.com/api/User/Get?term=${personInputData.val()}`, "GET", null, function (data) {
-            container.load(`http://bitcypo.com/Home/SearchPartial?data=${encodeURIComponent(JSON.stringify(data))}`);
+        ajaxCall(`${RurlApi}/Get?term=${personInputData.val()}`, "GET", null, function (data) {
+            container.load(`${Rurl}?data=${encodeURIComponent(JSON.stringify(data))}`);
         });
     });
 
 });
+

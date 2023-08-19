@@ -4,7 +4,14 @@
 <script src="~/Scripts/Search.js"></script>
 <link href="~/Content/Styles/Search.css" rel="stylesheet" />
 
+<script>
+    let _messageURL = "@Url.Action("Messages", "Home")";
+    let Rurl = '@Url.Action("SearchPartial", "Home")';
 
+    /*// Concatenate the URL correctly*/
+    let RurlApi = '@Url.RouteUrl("DefaultApi", new { httproute = "", controller = "User" })';
+
+</script>
 
 <div class="container" style="margin-top: 20px; ">
 

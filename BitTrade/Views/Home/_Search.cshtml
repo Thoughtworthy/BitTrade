@@ -2,11 +2,17 @@
 @model IEnumerable<FriendShipModel>
 
 <script src="~/Scripts/SearchPartial.js"></script>
+<script src="~/Scripts/Search.js"></script>
+@*http://bitcypo.com/api/User/Get?term=
+    http://bitcypo.com/Home/SearchPartial?data=$*@
+<!--<script>
+    let _messageURL = "@Url.Action("Messages", "Home")";
+    let Rurl = '@Url.Action("SearchPartial", "Home")';
 
-<script>
-    let _messageURL = "@Url.Action("Messages","Home")";
-</script>
+    // Concatenate the URL correctly
+    let RurlApi = '@Url.RouteUrl("DefaultApi", new { httproute = "", controller = "User" })';
 
+</script>-->
 
 @foreach (var user in Model)
 {
@@ -19,9 +25,9 @@
                     @user.FullName
                 </a>
                 <div class="button-container" data-id="@user.Id">
-                    @if (user.IsFriend == null)
+                    @if (user.IsFriend == false)
                     {
-                        <button class="add-friend btn btn-primary mr-1">Add friend</button>
+                        <button class="add-friend btn btn-primary mr-1">Cancel request</button>
                     }
                     else if (user.IsFriend == true)
                     {
@@ -29,7 +35,7 @@
                     }
                     else
                     {
-                        <button class="cencel-request btn btn-primary mr-1">Cancel request</button>
+                        <button class="cencel-request btn btn-primary mr-1">Add friend</button>
                     }
                     <button class="write-message btn btn-primary">Write Message</button>
                 </div>

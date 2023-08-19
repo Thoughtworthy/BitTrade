@@ -88,14 +88,14 @@ namespace BitTrade.BLL.Services
                 Salt = salt,
             };
 
+            _unitOfWork.UserRepository.Insert(user);
+
             Wallet wallet = new Wallet
             {
                 CurrencyType = "USD",
                 UserID = user.ID,
                 CoinCount = 10000,
             };
-
-            _unitOfWork.UserRepository.Insert(user);
             _unitOfWork.WalletRepository.Insert(wallet);
 
             _unitOfWork.Commit();
